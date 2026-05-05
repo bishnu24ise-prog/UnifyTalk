@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import T from "../components/T";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
@@ -251,7 +252,7 @@ const styles = `
   .who-feature-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
 
   /* TEAM */
-  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 700px; margin: 0 auto; }
   .team-card { padding: 32px 24px; border-radius: 24px; background: var(--bg2); border: 1px solid var(--border); text-align: center; transition: all 0.3s; }
   .team-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
   .team-avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 900; font-family: 'Playfair Display', serif; border: 3px solid var(--border2); }
@@ -395,15 +396,7 @@ const TEAM = [
     college: "Cambridge Institute of Technology",
     color: "linear-gradient(135deg,#06b6d4,#a855f7)",
     collegeColor: "rgba(6,182,212,0.12)", collegeBorder: "rgba(6,182,212,0.3)", collegeText: "#06b6d4",
-    skills: ["Node.js", "MongoDB", "Socket.io", "Express"]
-  },
-  {
-    initials: "PM", name: "Pallavi M",
-    role: "Research & Accessibility Lead",
-    college: "RNS Institute of Technology",
-    color: "linear-gradient(135deg,#34d399,#f59e0b)",
-    collegeColor: "rgba(52,211,153,0.12)", collegeBorder: "rgba(52,211,153,0.3)", collegeText: "#34d399",
-    skills: ["Research", "WCAG", "ISL", "Testing"]
+    skills: ["Node.js", "MongoDB", "Socket.io", "Express", "Research", "WCAG", "ISL", "Testing"]
   },
 ];
 
@@ -506,13 +499,13 @@ export default function UnifyTalkCosmic() {
               <span className="nav-name">UnifyTalk</span>
             </a>
             <ul className="nav-links">
-              <li><a href="#features" className="nav-link">Features</a></li>
-              <li><a href="#how"      className="nav-link">How It Works</a></li>
-              <li><a href="#who"      className="nav-link">Who It Helps</a></li>
-              <li><a href="#team"     className="nav-link">Team</a></li>
+              <li><a href="#features" className="nav-link"><T text="Features" tag="none" /></a></li>
+              <li><a href="#how"      className="nav-link"><T text="How It Works" tag="none" /></a></li>
+              <li><a href="#who"      className="nav-link"><T text="Who It Helps" tag="none" /></a></li>
+              <li><a href="#team"     className="nav-link"><T text="Team" tag="none" /></a></li>
             </ul>
             <button className="nav-cta" onClick={() => showToast("🚀 App is running at localhost:3000!")} aria-label="Launch UnifyTalk App">
-              Launch App <span aria-hidden="true">→</span>
+              <T text="Launch App" tag="none" /> <span aria-hidden="true">→</span>
             </button>
           </nav>
         </header>
@@ -523,25 +516,25 @@ export default function UnifyTalkCosmic() {
             <div className="hero-badge" role="status">
               <div className="hero-badge-dot" aria-hidden="true"/>
               <span className="live-dot" aria-hidden="true"/>
-              Live Platform · All 6 Phases Complete
+              <T text="Live Platform · All 6 Phases Complete" tag="none" />
             </div>
 
             <h1 className="hero-h1" id="hero-title">
-              <span className="line1">Talk to Anyone.</span>
-              <span className="line2">Understood</span>
-              <span className="line3">by All.</span>
+              <span className="line1"><T text="Talk to Anyone." tag="none" /></span>
+              <span className="line2"><T text="Understood" tag="none" /></span>
+              <span className="line3"><T text="by All." tag="none" /></span>
             </h1>
 
             <p className="hero-sub">
-              UnifyTalk is a full accessibility platform built by BTech students from Bengaluru — helping deaf, mute, and blind people communicate with the world using AI, sign language detection, and voice navigation.
+              <T text="UnifyTalk is a full accessibility platform built by BTech students from Bengaluru — helping deaf, mute, and blind people communicate with the world using AI, sign language detection, and voice navigation." tag="none" />
             </p>
 
             <div className="hero-actions">
               <button className="btn-primary" onClick={() => showToast("🚀 Opening app!")} aria-label="Launch UnifyTalk platform">
-                🤝 Launch UnifyTalk
+                🤝 <T text="Launch UnifyTalk" tag="none" />
               </button>
               <button className="btn-ghost" onClick={() => showToast("📖 Scroll down to explore!")} aria-label="Explore Features">
-                Explore Features <span aria-hidden="true">↓</span>
+                <T text="Explore Features" tag="none" /> <span aria-hidden="true">↓</span>
               </button>
             </div>
 
@@ -594,18 +587,18 @@ export default function UnifyTalkCosmic() {
           {/* FEATURES */}
           <section className="section" id="features" aria-labelledby="features-title">
             <div className="section-eyebrow" style={{ background:"rgba(168,85,247,0.1)", border:"1px solid rgba(168,85,247,0.25)", color:"#c084fc" }} aria-hidden="true">
-              ✦ Core Features
+              ✦ <T text="Core Features" tag="none" />
             </div>
             <h2 className="section-title" id="features-title">
-              Built for <span style={{ background:"linear-gradient(90deg,#a855f7,#06b6d4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Every Ability</span>
+              <T text="Built for" tag="none" /> <span style={{ background:"linear-gradient(90deg,#a855f7,#06b6d4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}><T text="Every Ability" tag="none" /></span>
             </h2>
-            <p className="section-sub">Six powerful tools, each designed for a specific communication need — all in one unified platform.</p>
+            <p className="section-sub"><T text="Six powerful tools, each designed for a specific communication need — all in one unified platform." tag="none" /></p>
             <div className="features-grid" role="list">
               {FEATURES.map((f, i) => (
                 <div key={i} className={`feat-card ${f.cls}`} role="listitem">
                   <div className="feat-icon-wrap" style={{ background: f.bg }} aria-hidden="true">{f.icon}</div>
-                  <h3 className="feat-title">{f.title}</h3>
-                  <p className="feat-desc">{f.desc}</p>
+                  <h3 className="feat-title"><T text={f.title} tag="none" /></h3>
+                  <p className="feat-desc"><T text={f.desc} tag="none" /></p>
                 </div>
               ))}
             </div>
@@ -614,45 +607,44 @@ export default function UnifyTalkCosmic() {
           {/* HOW IT WORKS */}
           <section className="section" id="how" aria-labelledby="how-it-works-title" style={{ paddingTop: 0 }}>
             <div className="section-eyebrow" style={{ background:"rgba(6,182,212,0.1)", border:"1px solid rgba(6,182,212,0.25)", color:"#67e8f9" }} aria-hidden="true">
-              ✦ How It Works
+              ✦ <T text="How It Works" tag="none" />
             </div>
             <h2 className="section-title" id="how-it-works-title">
-              4 Simple <span style={{ background:"linear-gradient(90deg,#06b6d4,#a855f7)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Steps</span>
+              <T text="4 Simple" tag="none" /> <span style={{ background:"linear-gradient(90deg,#06b6d4,#a855f7)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}><T text="Steps" tag="none" /></span>
             </h2>
-            <p className="section-sub">Getting started with UnifyTalk takes less than 2 minutes.</p>
+            <p className="section-sub"><T text="Getting started with UnifyTalk takes less than 2 minutes." tag="none" /></p>
             <div className="steps-wrap" role="list">
               {STEPS.map((s, i) => (
                 <div key={i} className="step-item" role="listitem">
                   <div className="step-circle" style={{ background: i % 2 === 0 ? "rgba(168,85,247,0.12)" : "rgba(6,182,212,0.12)" }} aria-hidden="true">
                     {s.icon}
                   </div>
-                  <h3 className="step-title">{s.title}</h3>
-                  <p className="step-desc">{s.desc}</p>
+                  <h3 className="step-title"><T text={s.title} tag="none" /></h3>
+                  <p className="step-desc"><T text={s.desc} tag="none" /></p>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* WHO IT HELPS */}
           <section className="section" id="who" aria-labelledby="who-it-helps-title" style={{ paddingTop: 0 }}>
             <div className="section-eyebrow" style={{ background:"rgba(168,85,247,0.1)", border:"1px solid rgba(168,85,247,0.25)", color:"#c084fc" }} aria-hidden="true">
-              ✦ Who It Helps
+              ✦ <T text="Who It Helps" tag="none" />
             </div>
             <h2 className="section-title" id="who-it-helps-title">
-              Built <span style={{ background:"linear-gradient(90deg,#c084fc,#67e8f9)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>For Them</span>
+              <T text="Built" tag="none" /> <span style={{ background:"linear-gradient(90deg,#c084fc,#67e8f9)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}><T text="For Them" tag="none" /></span>
             </h2>
-            <p className="section-sub">Three groups who have been underserved by technology for too long.</p>
+            <p className="section-sub"><T text="Three groups who have been underserved by technology for too long." tag="none" /></p>
             <div className="who-grid" role="list">
               {WHO.map((w, i) => (
                 <div key={i} className="who-card" style={{ borderColor: w.border, background: w.bg }} role="listitem">
                   <div className="who-emoji" aria-hidden="true">{w.emoji}</div>
-                  <h3 className="who-title" style={{ color: w.tc }}>{w.title}</h3>
-                  <p className="who-desc">{w.desc}</p>
+                  <h3 className="who-title" style={{ color: w.tc }}><T text={w.title} tag="none" /></h3>
+                  <p className="who-desc"><T text={w.desc} tag="none" /></p>
                   <div className="who-features" role="list">
                     {w.features.map((f, j) => (
                       <div key={j} className="who-feature" role="listitem">
                         <div className="who-feature-dot" style={{ background: w.tc }} aria-hidden="true"/>
-                        {f}
+                        <T text={f} tag="none" />
                       </div>
                     ))}
                   </div>
@@ -664,19 +656,19 @@ export default function UnifyTalkCosmic() {
           {/* TESTIMONIALS */}
           <section className="section" aria-labelledby="testimonials-title" style={{ paddingTop: 0 }}>
             <div className="section-eyebrow" style={{ background:"rgba(6,182,212,0.1)", border:"1px solid rgba(6,182,212,0.25)", color:"#67e8f9" }} aria-hidden="true">
-              ✦ Real Stories
+              ✦ <T text="Real Stories" tag="none" />
             </div>
             <h2 className="section-title" id="testimonials-title">
-              What <span style={{ background:"linear-gradient(90deg,#67e8f9,#c084fc)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Users Say</span>
+              <T text="What" tag="none" /> <span style={{ background:"linear-gradient(90deg,#67e8f9,#c084fc)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}><T text="Users Say" tag="none" /></span>
             </h2>
-            <p className="section-sub">Real experiences from people whose lives are being changed by UnifyTalk.</p>
+            <p className="section-sub"><T text="Real experiences from people whose lives are being changed by UnifyTalk." tag="none" /></p>
             <div className="testimonials-grid" role="list">
               {TESTIMONIALS.map((t, i) => (
                 <div key={i} className="testi-card" role="listitem">
                   <div className="testi-stars" aria-label="5 stars rating">
                     {[1,2,3,4,5].map(s => <span key={s} className="testi-star" aria-hidden="true">★</span>)}
                   </div>
-                  <blockquote className="testi-text">"{t.text}"</blockquote>
+                  <blockquote className="testi-text">"<T text={t.text} tag="none" />"</blockquote>
                   <div className="testi-author">
                     <div className="testi-avatar" style={{ background: t.color }} aria-hidden="true">{t.avatar}</div>
                     <div>
@@ -695,22 +687,22 @@ export default function UnifyTalkCosmic() {
           {/* PHASES */}
           <section className="section" aria-labelledby="phases-title" style={{ paddingTop: 0 }}>
             <div className="section-eyebrow" style={{ background:"rgba(168,85,247,0.1)", border:"1px solid rgba(168,85,247,0.25)", color:"#c084fc" }} aria-hidden="true">
-              ✦ Build Phases
+              ✦ <T text="Build Phases" tag="none" />
             </div>
             <h2 className="section-title" id="phases-title">
-              6 Phases. <span style={{ background:"linear-gradient(90deg,#06b6d4,#a855f7)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>One Platform.</span>
+              <T text="6 Phases." tag="none" /> <span style={{ background:"linear-gradient(90deg,#06b6d4,#a855f7)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}><T text="One Platform." tag="none" /></span>
             </h2>
-            <p className="section-sub">Built phase by phase — each fully functional and demo-ready on its own.</p>
+            <p className="section-sub"><T text="Built phase by phase — each fully functional and demo-ready on its own." tag="none" /></p>
             <div className="phases-list" role="list">
               {PHASES.map((p, i) => (
                 <div key={i} className="phase-row" role="listitem">
                   <div className="phase-num" style={{ background: p.bg, color: p.pc }} aria-hidden="true">{p.n}</div>
                   <div className="phase-info">
-                    <h3 className="phase-name">{p.name}</h3>
-                    <p className="phase-desc">{p.desc}</p>
+                    <h3 className="phase-name"><T text={p.name} tag="none" /></h3>
+                    <p className="phase-desc"><T text={p.desc} tag="none" /></p>
                   </div>
                   <div className="phase-done" style={{ background: p.bg, color: p.pc, border: `1px solid ${p.pc}44` }}>
-                    <span className="sr-only">Status:</span> ✅ Live
+                    <span className="sr-only">Status:</span> ✅ <T text="Live" tag="none" />
                   </div>
                 </div>
               ))}
@@ -720,18 +712,18 @@ export default function UnifyTalkCosmic() {
           {/* TECH STACK */}
           <section className="section" aria-labelledby="tech-stack-title" style={{ paddingTop: 0 }}>
             <div className="section-eyebrow" style={{ background:"rgba(6,182,212,0.1)", border:"1px solid rgba(6,182,212,0.25)", color:"#67e8f9" }} aria-hidden="true">
-              ✦ Tech Stack
+              ✦ <T text="Tech Stack" tag="none" />
             </div>
             <h2 className="section-title" id="tech-stack-title">
-              Powered by <span style={{ background:"linear-gradient(90deg,#67e8f9,#a855f7)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Modern Tech</span>
+              <T text="Powered by" tag="none" /> <span style={{ background:"linear-gradient(90deg,#67e8f9,#a855f7)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}><T text="Modern Tech" tag="none" /></span>
             </h2>
-            <p className="section-sub">Built with industry-standard tools used by top tech companies worldwide.</p>
+            <p className="section-sub"><T text="Built with industry-standard tools used by top tech companies worldwide." tag="none" /></p>
             <div className="tech-grid" role="list">
               {TECH.map((t, i) => (
                 <div key={i} className="tech-card" role="listitem">
                   <div className="tech-icon" aria-hidden="true">{t.icon}</div>
                   <h3 className="tech-name">{t.name}</h3>
-                  <p className="tech-desc">{t.desc}</p>
+                  <p className="tech-desc"><T text={t.desc} tag="none" /></p>
                 </div>
               ))}
             </div>
@@ -745,7 +737,7 @@ export default function UnifyTalkCosmic() {
             <h2 className="section-title" id="team-title">
               Built with <span style={{ background:"linear-gradient(90deg,#c084fc,#67e8f9)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Heart</span>
             </h2>
-            <p className="section-sub">Three BTech students from Bengaluru on a mission to make communication universal.</p>
+            <p className="section-sub">Two BTech students from Bengaluru on a mission to make communication universal.</p>
             <div className="team-grid" role="list">
               {TEAM.map((m, i) => (
                 <div key={i} className="team-card" role="listitem">
@@ -768,22 +760,22 @@ export default function UnifyTalkCosmic() {
             <div className="cta-inner">
               <div className="cta-glow" aria-hidden="true">🔮</div>
               <h2 className="cta-h2" id="cta-title">
-                Ready to <span>Break the Silence?</span>
+                <T text="Ready to" tag="none" /> <span><T text="Break the Silence?" tag="none" /></span>
               </h2>
               <p className="cta-sub">
-                UnifyTalk is free, open, and built with heart. Every voice deserves to be heard — and now it can be.
+                <T text="UnifyTalk is free, open, and built with heart. Every voice deserves to be heard — and now it can be." tag="none" />
               </p>
               <div style={{ display:"flex", gap:14, flexWrap:"wrap", justifyContent:"center" }}>
                 <button className="btn-primary" onClick={() => showToast("🚀 Opening app!")} aria-label="Launch UnifyTalk platform">
-                  🚀 Start Communicating
+                  🚀 <T text="Start Communicating" tag="none" />
                 </button>
                 <button className="btn-ghost" onClick={() => showToast("⭐ Thank you for supporting!")} aria-label="Support the project">
-                  ⭐ Support the Project
+                  ⭐ <T text="Support the Project" tag="none" />
                 </button>
               </div>
               <p className="cta-credit">
-                Built by <strong>Ansika</strong>, <strong>Bishnu Kumar Sardar</strong> & <strong>Pallavi M</strong><br/>
-                Cambridge Institute of Technology & RNS Institute of Technology · Bengaluru · 2025
+                Built by <strong>Ansika</strong> & <strong>Bishnu Kumar Sardar</strong><br/>
+                Cambridge Institute of Technology · Bengaluru · 2025
               </p>
             </div>
           </section>
@@ -792,12 +784,12 @@ export default function UnifyTalkCosmic() {
         {/* FOOTER */}
         <footer className="footer" aria-label="Site footer">
           <div className="footer-left">
-            <strong>UnifyTalk</strong> · Every voice deserves to be heard.<br/>
-            Made with 💜 by Ansika, Bishnu & Pallavi · Bengaluru, India · 2025
+            <strong>UnifyTalk</strong> · <T text="Every voice deserves to be heard." tag="none" /><br/>
+            Made with 💜 by Ansika & Bishnu · Bengaluru, India · 2025
           </div>
           <div className="footer-links" role="list">
             {["Features","How It Works","Community","GitHub"].map(l => (
-              <button key={l} className="footer-link" role="listitem" onClick={() => showToast(`📄 Opening ${l}…`)}>{l}</button>
+              <button key={l} className="footer-link" role="listitem" onClick={() => showToast(`📄 Opening ${l}…`)}><T text={l} tag="none" /></button>
             ))}
           </div>
         </footer>

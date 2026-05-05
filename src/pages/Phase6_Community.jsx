@@ -280,7 +280,6 @@ const COMMUNITY_POSTS_INIT = [
 const MEMBERS = [
   { name:"Ansika",        type:"Lead Developer",    avatar:"AN", color:"linear-gradient(135deg,#818cf8,#38bdf8)", online:true  },
   { name:"Bishnu K.S.",   type:"Backend Developer", avatar:"BS", color:"linear-gradient(135deg,#06b6d4,#a855f7)", online:true  },
-  { name:"Pallavi M.",    type:"Accessibility Lead",avatar:"PM", color:"linear-gradient(135deg,#34d399,#f59e0b)", online:false },
   { name:"Riya M.",       type:"Deaf User",         avatar:"RM", color:"linear-gradient(135deg,#34d399,#38bdf8)", online:true  },
   { name:"Arjun K.",      type:"Mute User",         avatar:"AK", color:"linear-gradient(135deg,#818cf8,#fb7185)", online:true  },
   { name:"Divya S.",      type:"Blind User",        avatar:"DS", color:"linear-gradient(135deg,#f59e0b,#fb7185)", online:false },
@@ -835,9 +834,9 @@ export default function UnifyTalkPhase6() {
 
         <footer className="p6-footer">
           <div style={{marginBottom:8}}>
-            <span>UnifyTalk</span> — Built with <span className="p6-footer-heart" aria-hidden="true">♥</span> by <strong style={{color:"var(--accent2)"}}>Ansika</strong>, <strong style={{color:"var(--accent)"}}>Bishnu</strong> & <strong style={{color:"var(--accent4)"}}>Pallavi</strong>
+            <span>UnifyTalk</span> — Built with <span className="p6-footer-heart" aria-hidden="true">♥</span> by <strong style={{color:"var(--accent2)"}}>Ansika</strong> & <strong style={{color:"var(--accent)"}}>Bishnu</strong>
           </div>
-          <div>Cambridge Institute of Technology & RNS Institute of Technology · Bengaluru · 2025</div>
+          <div>Cambridge Institute of Technology · Bengaluru · 2025</div>
           <div style={{marginTop:8,fontSize:11}}>🌍 Breaking communication barriers for 1 billion+ people with disabilities worldwide</div>
         </footer>
 

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { getPhrases, createPhrase, deletePhrase } from '../api';
+import SmartPhrases from '../components/SmartPhrases';
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
@@ -716,6 +717,8 @@ export default function UnifyTalkPhase3() {
 
             {/* ── QUICK PHRASES ── */}
             {activeTab === "phrases" && (
+              <>
+              <SmartPhrases context="general" onSpeak={speak} onCopy={copy} />
               <div className="p3-qp-layout">
                 {/* LEFT — PHRASE LIBRARY */}
                 <section className="p3-card" aria-labelledby="phrase-lib-title">
@@ -868,6 +871,7 @@ export default function UnifyTalkPhase3() {
                   </section>
                 </aside>
               </div>
+              </>
             )}
 
             {/* ── EMOTION PANEL ── */}

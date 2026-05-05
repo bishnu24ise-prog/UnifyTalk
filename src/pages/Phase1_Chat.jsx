@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { saveChatSession } from '../api';
+import { saveChatSession, translateText } from '../api';
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
@@ -530,6 +530,7 @@ const styles = `
     max-width: 900px; margin: 0 auto 20px;
     padding: 0 24px;
     display: flex; gap: 10px; align-items: center;
+    flex-wrap: wrap;
   }
 
   .ab-a11y-label { font-size: 12px; color: var(--muted); margin-right: 4px; }
@@ -542,6 +543,50 @@ const styles = `
   }
   .ab-a11y-btn:hover { border-color: var(--accent); color: var(--accent); }
   .ab-a11y-btn.active { border-color: var(--accent); background: rgba(0,212,170,0.1); color: var(--accent); }
+
+  /* LANGUAGE SELECTOR */
+  .ab-lang-select {
+    padding: 6px 12px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--text); cursor: pointer; font-size: 12px;
+    font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6' fill='%2364748b'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 8px center;
+    padding-right: 24px;
+  }
+  .ab-lang-select:focus { border-color: var(--accent2); outline: none; box-shadow: 0 0 0 3px rgba(129,140,248,0.1); }
+  .ab-lang-select option { background: var(--surface2); color: var(--text); }
+
+  .ab-lang-bar {
+    display: flex; align-items: center; gap: 8px;
+    margin-left: auto;
+  }
+
+  .ab-translate-btn {
+    padding: 2px 8px; border-radius: 6px;
+    border: 1px solid rgba(52,211,153,0.3); background: rgba(52,211,153,0.08);
+    color: var(--accent4); font-size: 10px; cursor: pointer;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 6px;
+  }
+  .ab-translate-btn:hover { background: rgba(52,211,153,0.18); border-color: var(--accent4); }
+  .ab-translate-btn.loading { opacity: 0.6; cursor: wait; }
+
+  .ab-translated-text {
+    margin-top: 6px; padding: 6px 10px;
+    border-radius: 8px; font-size: 13px;
+    background: rgba(52,211,153,0.06);
+    border: 1px solid rgba(52,211,153,0.15);
+    color: var(--accent4); line-height: 1.5;
+  }
+
+  .ab-auto-badge {
+    font-size: 9px; padding: 1px 6px;
+    border-radius: 4px; background: rgba(52,211,153,0.12);
+    color: var(--accent4); margin-left: 4px; font-weight: 600;
+  }
 
   /* HIGH CONTRAST MODE */
   .ab-root.high-contrast {
@@ -577,6 +622,22 @@ const MODES = [
   { id: "blind", icon: "👁️", label: "Blind Mode", desc: "Voice Navigate", color: "active-amber" },
 ];
 
+const LANGUAGES = [
+  { code: "en", label: "🇬🇧 English", speech: "en-US" },
+  { code: "hi", label: "🇮🇳 Hindi", speech: "hi-IN" },
+  { code: "bn", label: "🇮🇳 Bengali", speech: "bn-IN" },
+  { code: "ta", label: "🇮🇳 Tamil", speech: "ta-IN" },
+  { code: "te", label: "🇮🇳 Telugu", speech: "te-IN" },
+  { code: "kn", label: "🇮🇳 Kannada", speech: "kn-IN" },
+  { code: "or", label: "🇮🇳 Odia", speech: "or-IN" },
+  { code: "mr", label: "🇮🇳 Marathi", speech: "mr-IN" },
+  { code: "es", label: "🇪🇸 Spanish", speech: "es-ES" },
+  { code: "fr", label: "🇫🇷 French", speech: "fr-FR" },
+  { code: "ar", label: "🇸🇦 Arabic", speech: "ar-SA" },
+  { code: "ja", label: "🇯🇵 Japanese", speech: "ja-JP" },
+  { code: "zh", label: "🇨🇳 Chinese", speech: "zh-CN" },
+];
+
 export default function UnifyTalk() {
   const [messages, setMessages] = useState([
     {
@@ -600,6 +661,12 @@ export default function UnifyTalk() {
   // Live captions for deaf users
   const [liveCaptions, setLiveCaptions] = useState("");
   const [showCaptions, setShowCaptions] = useState(false);
+  // Multilanguage
+  const [selectedLang, setSelectedLang] = useState("en");
+  const [targetLang, setTargetLang] = useState("hi");
+  const [autoTranslate, setAutoTranslate] = useState(false);
+  const [translations, setTranslations] = useState({}); // { msgId: translatedText }
+  const [translating, setTranslating] = useState({}); // { msgId: true/false }
 
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
@@ -745,7 +812,7 @@ export default function UnifyTalk() {
     recognitionRef.current = recognition;
     recognition.continuous = false;
     recognition.interimResults = true; // Enable interim results for live captions
-    recognition.lang = "en-US";
+    recognition.lang = LANGUAGES.find(l => l.code === selectedLang)?.speech || "en-US";
     recognition.onstart = () => {
       setIsListening(true);
       if (activeMode === "deaf") {
@@ -784,7 +851,7 @@ export default function UnifyTalk() {
       setShowCaptions(false);
     };
     recognition.start();
-  }, [addMessage, isListening, setIsListening, setLiveCaptions, setShowCaptions, activeMode, setInput]);
+  }, [addMessage, isListening, setIsListening, setLiveCaptions, setShowCaptions, activeMode, setInput, selectedLang]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -850,6 +917,20 @@ export default function UnifyTalk() {
     // Auto read aloud if mute mode
     if (activeMode === "mute") {
       setTimeout(() => speakText(text), 300);
+    }
+
+    // Auto-translate if enabled
+    if (autoTranslate && selectedLang !== targetLang) {
+      translateText({ text, from: selectedLang, to: targetLang })
+        .then(r => {
+          if (r.data.translatedText && r.data.translatedText !== text) {
+            const transId = Date.now() + 1;
+            setMessages(prev => [...prev, {
+              id: transId, from: "system", type: "translated",
+              text: `🌐 ${LANGUAGES.find(l => l.code === targetLang)?.label || targetLang}: ${r.data.translatedText}`
+            }]);
+          }
+        }).catch(() => {});
     }
 
     // Simulate response
@@ -961,9 +1042,18 @@ export default function UnifyTalk() {
                 💬 Communication Room
                 <span className={`ab-mode-indicator ${activeMode}`}>{getModeName()}</span>
               </div>
-              <button className="ab-clear-btn" onClick={() => setMessages([])} aria-label="Clear chat">
-                🗑 Clear
-              </button>
+              <div style={{display:'flex',gap:8,alignItems:'center'}}>
+                <select className="ab-lang-select" value={selectedLang} onChange={e => setSelectedLang(e.target.value)} aria-label="Your language">
+                  {LANGUAGES.map(l => <option key={l.code} value={l.code}>{l.label}</option>)}
+                </select>
+                <span style={{fontSize:14,color:'var(--muted)'}}>→</span>
+                <select className="ab-lang-select" value={targetLang} onChange={e => setTargetLang(e.target.value)} aria-label="Translate to">
+                  {LANGUAGES.map(l => <option key={l.code} value={l.code}>{l.label}</option>)}
+                </select>
+                <button className="ab-clear-btn" onClick={() => setMessages([])} aria-label="Clear chat">
+                  🗑 Clear
+                </button>
+              </div>
             </div>
 
             {/* MESSAGES */}
@@ -974,19 +1064,40 @@ export default function UnifyTalk() {
                   <div>Start a conversation using the input below</div>
                 </div>
               ) : (
-                messages.map(msg => (
-                  <div key={msg.id} className={`ab-msg ${msg.from}`} role="article">
-                    <div className={`ab-avatar ${msg.from}`}>
-                      {msg.from === "system" ? "🤖" : "🧑"}
-                    </div>
-                    <div className="ab-bubble">
-                      <div className="ab-msg-type">
-                        {msg.from === "system" ? "System" : "You"} · {msg.type}
+                messages.map(msg => {
+                  const handleTranslateMsg = () => {
+                    if (translations[msg.id]) { setTranslations(prev => { const n={...prev}; delete n[msg.id]; return n; }); return; }
+                    setTranslating(prev => ({...prev, [msg.id]: true}));
+                    const from = msg.from === 'user' ? selectedLang : 'en';
+                    const to = msg.from === 'user' ? targetLang : selectedLang;
+                    translateText({ text: msg.text, from, to })
+                      .then(r => setTranslations(prev => ({...prev, [msg.id]: r.data.translatedText})))
+                      .catch(() => setTranslations(prev => ({...prev, [msg.id]: '⚠️ Translation failed'})))
+                      .finally(() => setTranslating(prev => ({...prev, [msg.id]: false})));
+                  };
+                  return (
+                    <div key={msg.id} className={`ab-msg ${msg.from}`} role="article">
+                      <div className={`ab-avatar ${msg.from}`}>
+                        {msg.from === "system" ? "🤖" : "🧑"}
                       </div>
-                      {msg.text}
+                      <div className="ab-bubble">
+                        <div className="ab-msg-type">
+                          {msg.from === "system" ? "System" : "You"} · {msg.type}
+                          {msg.type === 'translated' && <span className="ab-auto-badge">AUTO</span>}
+                        </div>
+                        {msg.text}
+                        {msg.type !== 'translated' && msg.type !== 'system' && (
+                          <button className={`ab-translate-btn ${translating[msg.id] ? 'loading' : ''}`} onClick={handleTranslateMsg} aria-label="Translate message">
+                            🌐 {translations[msg.id] ? 'Hide' : translating[msg.id] ? 'Translating…' : 'Translate'}
+                          </button>
+                        )}
+                        {translations[msg.id] && (
+                          <div className="ab-translated-text">{translations[msg.id]}</div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))
+                  );
+                })
               )}
               <div ref={messagesEndRef} />
             </div>
@@ -1068,6 +1179,9 @@ export default function UnifyTalk() {
                 </div>
               </div>
               <div className="ab-tools">
+                <button className={`ab-tool-chip ${autoTranslate ? 'active' : ''}`} onClick={() => setAutoTranslate(a => !a)} aria-label="Toggle auto-translate">
+                  🌐 Auto-Translate {autoTranslate ? 'ON' : 'OFF'}
+                </button>
                 <button className="ab-tool-chip" onClick={() => addMessage("🆘 I need immediate help!", "user", "emergency")} aria-label="Emergency alert">
                   🆘 Emergency
                 </button>
@@ -1101,7 +1215,7 @@ export default function UnifyTalk() {
 
         {/* FOOTER */}
         <footer className="ab-footer">
-          Made with ❤️ by Ansika &nbsp;·&nbsp; <span>UnifyTalk</span> &nbsp;·&nbsp; Phase 1 of 6
+          Made with ❤️ by Ansika & Bishnu &nbsp;·&nbsp; <span>UnifyTalk</span> &nbsp;·&nbsp; Phase 1 of 6
         </footer>
 
       </div>

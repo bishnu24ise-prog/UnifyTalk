@@ -64,8 +64,13 @@ export const saveSymptomReport = (data) => API.post('/api/symptoms/report', data
 export const getSymptomHistory = ()     => API.get('/api/symptoms/history');
 export const getSymptomStats   = ()     => API.get('/api/symptoms/stats');
 
-// ── Accessibility Preferences (Phase 5) ──────────────────────────────────────
 export const getAccessibilityPrefs  = ()     => API.get('/api/accessibility/prefs');
 export const saveAccessibilityPrefs = (data) => API.put('/api/accessibility/prefs', data);
 export const logVoiceCommand        = (data) => API.post('/api/accessibility/voice-log', data);
 export const getVoiceStats          = ()     => API.get('/api/accessibility/voice-stats');
+
+// ── Smart Phrase Suggestions ──────────────────────────────────────────────────
+export const getSmartSuggestions = (data) => API.post('/api/smart-phrases/suggest', data);
+
+// ── Translation ───────────────────────────────────────────────────────────────
+export const translateText = (data) => API.post('/api/translate', data);
