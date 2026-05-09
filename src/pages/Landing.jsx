@@ -322,44 +322,44 @@ const styles = `
 `;
 
 const FEATURES = [
-  { cls:"fp", bg:"rgba(168,85,247,0.12)", icon:"💬", title:"Speech to Text", desc:"Real-time voice transcription for deaf users. Every spoken word becomes readable text instantly at 95%+ accuracy." },
-  { cls:"fc", bg:"rgba(6,182,212,0.12)",  icon:"🔊", title:"Text to Speech", desc:"Mute users type their thoughts and have them spoken aloud in a natural, clear voice with adjustable speed and pitch." },
-  { cls:"fp", bg:"rgba(168,85,247,0.12)", icon:"🖼️", title:"Pictogram Board", desc:"76 symbols across 9 categories. Build full sentences by tapping icons — no typing needed. Perfect for motor impairments too." },
-  { cls:"fc", bg:"rgba(6,182,212,0.12)",  icon:"🤟", title:"Sign Language AI", desc:"MediaPipe detects 21 hand landmarks in real time — converts your hand signs to text and speech at 30+ FPS." },
-  { cls:"fp", bg:"rgba(168,85,247,0.12)", icon:"📖", title:"Screen Reader", desc:"Full keyboard navigation, voice commands, ARIA labels and Braille output. Designed from the ground up for blind users." },
-  { cls:"fc", bg:"rgba(6,182,212,0.12)",  icon:"🌍", title:"Community Platform", desc:"Share experiences, find communication buddies, track your progress and get support from a global accessibility community." },
+  { cls: "fp", bg: "rgba(168,85,247,0.12)", icon: "💬", title: "Speech to Text", desc: "Real-time voice transcription for deaf users. Every spoken word becomes readable text instantly at 95%+ accuracy." },
+  { cls: "fc", bg: "rgba(6,182,212,0.12)", icon: "🔊", title: "Text to Speech", desc: "Mute users type their thoughts and have them spoken aloud in a natural, clear voice with adjustable speed and pitch." },
+  { cls: "fp", bg: "rgba(168,85,247,0.12)", icon: "🖼️", title: "Pictogram Board", desc: "76 symbols across 9 categories. Build full sentences by tapping icons — no typing needed. Perfect for motor impairments too." },
+  { cls: "fc", bg: "rgba(6,182,212,0.12)", icon: "🤟", title: "Sign Language AI", desc: "MediaPipe detects 21 hand landmarks in real time — converts your hand signs to text and speech at 30+ FPS." },
+  { cls: "fp", bg: "rgba(168,85,247,0.12)", icon: "📖", title: "Screen Reader", desc: "Full keyboard navigation, voice commands, ARIA labels and Braille output. Designed from the ground up for blind users." },
+  { cls: "fc", bg: "rgba(6,182,212,0.12)", icon: "🌍", title: "Community Platform", desc: "Share experiences, find communication buddies, track your progress and get support from a global accessibility community." },
 ];
 
 const PHASES = [
-  { n:"1", name:"Chat Interface",     desc:"Speech↔Text, TTS, 3 disability modes, quick phrases", pc:"#a855f7", bg:"rgba(168,85,247,0.12)" },
-  { n:"2", name:"Pictogram Board",    desc:"76 symbols, 9 categories, sentence builder, emotions", pc:"#06b6d4", bg:"rgba(6,182,212,0.12)"  },
-  { n:"3", name:"Phrases & Emotions", desc:"Custom phrases, SOS alerts, emotion intensity slider",  pc:"#a855f7", bg:"rgba(168,85,247,0.12)" },
-  { n:"4", name:"Sign Language AI",   desc:"MediaPipe hands + Face Mesh, 15 gestures, 12 emotions", pc:"#06b6d4", bg:"rgba(6,182,212,0.12)"  },
-  { n:"5", name:"Screen Reader",      desc:"Voice nav, ARIA, keyboard shortcuts, Braille output",   pc:"#a855f7", bg:"rgba(168,85,247,0.12)" },
-  { n:"6", name:"Community Platform", desc:"Profiles, forum, dashboard, settings, buddy system",    pc:"#06b6d4", bg:"rgba(6,182,212,0.12)"  },
+  { n: "1", name: "Chat Interface", desc: "Speech↔Text, TTS, 3 disability modes, quick phrases", pc: "#a855f7", bg: "rgba(168,85,247,0.12)" },
+  { n: "2", name: "Pictogram Board", desc: "76 symbols, 9 categories, sentence builder, emotions", pc: "#06b6d4", bg: "rgba(6,182,212,0.12)" },
+  { n: "3", name: "Phrases & Emotions", desc: "Custom phrases, SOS alerts, emotion intensity slider", pc: "#a855f7", bg: "rgba(168,85,247,0.12)" },
+  { n: "4", name: "Sign Language AI", desc: "MediaPipe hands + Face Mesh, 15 gestures, 12 emotions", pc: "#06b6d4", bg: "rgba(6,182,212,0.12)" },
+  { n: "5", name: "Screen Reader", desc: "Voice nav, ARIA, keyboard shortcuts, Braille output", pc: "#a855f7", bg: "rgba(168,85,247,0.12)" },
+  { n: "6", name: "Community Platform", desc: "Profiles, forum, dashboard, settings, buddy system", pc: "#06b6d4", bg: "rgba(6,182,212,0.12)" },
 ];
 
 const WHO = [
   {
-    emoji:"👂", title:"Deaf Users", tc:"#c084fc",
-    border:"rgba(168,85,247,0.35)", bg:"rgba(168,85,247,0.06)",
-    desc:"Convert speech to text instantly. Never miss a word in conversations, meetings, or medical appointments.",
-    features:["🎙️ Live speech transcription", "📱 Real-time captions", "🔔 Visual alerts & vibration", "🤟 Sign language input"],
-    color:"var(--p)"
+    emoji: "👂", title: "Deaf Users", tc: "#c084fc",
+    border: "rgba(168,85,247,0.35)", bg: "rgba(168,85,247,0.06)",
+    desc: "Convert speech to text instantly. Never miss a word in conversations, meetings, or medical appointments.",
+    features: ["🎙️ Live speech transcription", "📱 Real-time captions", "🔔 Visual alerts & vibration", "🤟 Sign language input"],
+    color: "var(--p)"
   },
   {
-    emoji:"🗣️", title:"Mute Users", tc:"#67e8f9",
-    border:"rgba(6,182,212,0.35)", bg:"rgba(6,182,212,0.06)",
-    desc:"Type your thoughts and have them spoken aloud naturally. Build sentences with pictograms for lightning-fast communication.",
-    features:["🔊 Text-to-speech output", "🖼️ Pictogram sentences", "⚡ Quick phrase library", "😊 Emotion expressions"],
-    color:"var(--cyan)"
+    emoji: "🗣️", title: "Mute Users", tc: "#67e8f9",
+    border: "rgba(6,182,212,0.35)", bg: "rgba(6,182,212,0.06)",
+    desc: "Type your thoughts and have them spoken aloud naturally. Build sentences with pictograms for lightning-fast communication.",
+    features: ["🔊 Text-to-speech output", "🖼️ Pictogram sentences", "⚡ Quick phrase library", "😊 Emotion expressions"],
+    color: "var(--cyan)"
   },
   {
-    emoji:"👁️", title:"Blind Users", tc:"#c084fc",
-    border:"rgba(168,85,247,0.35)", bg:"rgba(168,85,247,0.06)",
-    desc:"Navigate entirely by voice. Every button, page, and feature is fully accessible without ever seeing the screen.",
-    features:["🎤 Voice command navigation", "⌨️ Full keyboard control", "♿ ARIA screen reader", "📖 Braille output support"],
-    color:"var(--p)"
+    emoji: "👁️", title: "Blind Users", tc: "#c084fc",
+    border: "rgba(168,85,247,0.35)", bg: "rgba(168,85,247,0.06)",
+    desc: "Navigate entirely by voice. Every button, page, and feature is fully accessible without ever seeing the screen.",
+    features: ["🎤 Voice command navigation", "⌨️ Full keyboard control", "♿ ARIA screen reader", "📖 Braille output support"],
+    color: "var(--p)"
   },
 ];
 
@@ -383,7 +383,7 @@ const TESTIMONIALS = [
 
 const TEAM = [
   {
-    initials: "AN", name: "Ansika",
+    initials: "AN", name: "Ansika singh",
     role: "Lead Developer & Visionary",
     college: "Cambridge Institute of Technology",
     color: "linear-gradient(135deg,#818cf8,#38bdf8)",
@@ -401,21 +401,21 @@ const TEAM = [
 ];
 
 const TECH = [
-  { icon:"⚛️", name:"React 18",        desc:"Frontend framework" },
-  { icon:"🟢", name:"Node.js",         desc:"Backend runtime"    },
-  { icon:"🍃", name:"MongoDB",         desc:"Database"           },
-  { icon:"⚡", name:"Socket.io",       desc:"Real-time chat"     },
-  { icon:"🧠", name:"MediaPipe",       desc:"Sign detection"     },
-  { icon:"👁️", name:"Google Vision",   desc:"Image AI"           },
-  { icon:"🔐", name:"JWT Auth",        desc:"Security"           },
-  { icon:"☁️", name:"Cloudinary",      desc:"Media storage"      },
+  { icon: "⚛️", name: "React 18", desc: "Frontend framework" },
+  { icon: "🟢", name: "Node.js", desc: "Backend runtime" },
+  { icon: "🍃", name: "MongoDB", desc: "Database" },
+  { icon: "⚡", name: "Socket.io", desc: "Real-time chat" },
+  { icon: "🧠", name: "MediaPipe", desc: "Sign detection" },
+  { icon: "👁️", name: "Google Vision", desc: "Image AI" },
+  { icon: "🔐", name: "JWT Auth", desc: "Security" },
+  { icon: "☁️", name: "Cloudinary", desc: "Media storage" },
 ];
 
 const STEPS = [
-  { icon:"📝", title:"Create Account", desc:"Sign up and choose your disability type — deaf, mute, blind, or none." },
-  { icon:"🎯", title:"Pick Your Mode", desc:"The app automatically adapts its interface for your specific communication needs." },
-  { icon:"💬", title:"Start Talking", desc:"Use voice, signs, pictograms or text — all converted to the right format for the other person." },
-  { icon:"🌍", title:"Connect & Grow", desc:"Join the community, share your story, and help make the world more accessible." },
+  { icon: "📝", title: "Create Account", desc: "Sign up and choose your disability type — deaf, mute, blind, or none." },
+  { icon: "🎯", title: "Pick Your Mode", desc: "The app automatically adapts its interface for your specific communication needs." },
+  { icon: "💬", title: "Start Talking", desc: "Use voice, signs, pictograms or text — all converted to the right format for the other person." },
+  { icon: "🌍", title: "Connect & Grow", desc: "Join the community, share your story, and help make the world more accessible." },
 ];
 
 const STAR_DATA = Array.from({ length: 60 }, () => ({
@@ -438,7 +438,7 @@ const MARQUEE_ITEMS = [
 
 export default function UnifyTalkCosmic() {
   const [scrolled, setScrolled] = useState(false);
-  const [toast, setToast]       = useState(null);
+  const [toast, setToast] = useState(null);
   const [counters, setCounters] = useState({ users: 0, countries: 0, accuracy: 0, uptime: 0 });
 
   const [isPaused, setIsPaused] = useState(false);
@@ -461,10 +461,10 @@ export default function UnifyTalkCosmic() {
       const progress = step / steps;
       const ease = 1 - Math.pow(1 - progress, 3);
       setCounters({
-        users:     Math.floor(targets.users     * ease),
+        users: Math.floor(targets.users * ease),
         countries: Math.floor(targets.countries * ease),
-        accuracy:  Math.floor(targets.accuracy  * ease),
-        uptime:    Math.floor(targets.uptime    * ease),
+        accuracy: Math.floor(targets.accuracy * ease),
+        uptime: Math.floor(targets.uptime * ease),
       });
       if (step >= steps) clearInterval(interval);
     }, duration / steps);
@@ -478,15 +478,15 @@ export default function UnifyTalkCosmic() {
       <style>{styles}</style>
       <div className="land">
         <a href="#main-content" className="skip-link">Skip to main content</a>
-      
+
         {/* COSMOS */}
         <div className="cosmos" aria-hidden="true">
-          <div className="orb orb1"/><div className="orb orb2"/>
-          <div className="orb orb3"/><div className="orb orb4"/>
-          <div className="grid-lines"/>
+          <div className="orb orb1" /><div className="orb orb2" />
+          <div className="orb orb3" /><div className="orb orb4" />
+          <div className="grid-lines" />
           <div className="stars">
             {STAR_DATA.map((s, i) => (
-              <div key={i} className="star" style={{ left:`${s.left}%`, top:`${s.top}%`, width:`${s.size}px`, height:`${s.size}px`, animationDelay:`${s.delay}s`, animationDuration:`${s.duration}s` }}/>
+              <div key={i} className="star" style={{ left: `${s.left}%`, top: `${s.top}%`, width: `${s.size}px`, height: `${s.size}px`, animationDelay: `${s.delay}s`, animationDuration: `${s.duration}s` }} />
             ))}
           </div>
         </div>
@@ -500,9 +500,9 @@ export default function UnifyTalkCosmic() {
             </a>
             <ul className="nav-links">
               <li><a href="#features" className="nav-link"><T text="Features" tag="none" /></a></li>
-              <li><a href="#how"      className="nav-link"><T text="How It Works" tag="none" /></a></li>
-              <li><a href="#who"      className="nav-link"><T text="Who It Helps" tag="none" /></a></li>
-              <li><a href="#team"     className="nav-link"><T text="Team" tag="none" /></a></li>
+              <li><a href="#how" className="nav-link"><T text="How It Works" tag="none" /></a></li>
+              <li><a href="#who" className="nav-link"><T text="Who It Helps" tag="none" /></a></li>
+              <li><a href="#team" className="nav-link"><T text="Team" tag="none" /></a></li>
             </ul>
             <button className="nav-cta" onClick={() => showToast("🚀 App is running at localhost:3000!")} aria-label="Launch UnifyTalk App">
               <T text="Launch App" tag="none" /> <span aria-hidden="true">→</span>
@@ -514,8 +514,8 @@ export default function UnifyTalkCosmic() {
           {/* HERO */}
           <section className="hero" aria-labelledby="hero-title">
             <div className="hero-badge" role="status">
-              <div className="hero-badge-dot" aria-hidden="true"/>
-              <span className="live-dot" aria-hidden="true"/>
+              <div className="hero-badge-dot" aria-hidden="true" />
+              <span className="live-dot" aria-hidden="true" />
               <T text="Live Platform · All 6 Phases Complete" tag="none" />
             </div>
 
@@ -539,14 +539,14 @@ export default function UnifyTalkCosmic() {
             </div>
 
             <div className="hero-chips" role="list" aria-label="Platform capabilities">
-              {["🤟 Sign Language AI","💬 Text to Speech","🖼️ Pictograms","📖 Screen Reader","🆘 SOS Alerts","🌍 Community","😊 Emotion Detection","🎙️ Speech to Text"].map((c, i) => (
+              {["🤟 Sign Language AI", "💬 Text to Speech", "🖼️ Pictograms", "📖 Screen Reader", "🆘 SOS Alerts", "🌍 Community", "😊 Emotion Detection", "🎙️ Speech to Text"].map((c, i) => (
                 <div key={i} className="chip" role="listitem">{c}</div>
               ))}
             </div>
 
             <div className="scroll-hint" aria-hidden="true">
               <span>Scroll</span>
-              <div className="scroll-line"/>
+              <div className="scroll-line" />
             </div>
           </section>
 
@@ -560,8 +560,8 @@ export default function UnifyTalkCosmic() {
                 ))}
               </div>
             </div>
-            <button 
-              className="demo-pause-btn" 
+            <button
+              className="demo-pause-btn"
               onClick={() => setIsPaused(!isPaused)}
               aria-label={isPaused ? "Resume Live Activity" : "Pause Live Activity"}
             >
@@ -573,9 +573,9 @@ export default function UnifyTalkCosmic() {
           <section className="stats-strip" aria-label="Platform statistics" role="list">
             {[
               { num: `${counters.users.toLocaleString()}+`, label: "People helped worldwide" },
-              { num: `${counters.countries}`,               label: "Countries reached" },
-              { num: `${counters.accuracy}%+`,              label: "Sign detection accuracy" },
-              { num: `${counters.uptime}%`,                 label: "Platform uptime" },
+              { num: `${counters.countries}`, label: "Countries reached" },
+              { num: `${counters.accuracy}%+`, label: "Sign detection accuracy" },
+              { num: `${counters.uptime}%`, label: "Platform uptime" },
             ].map((s, i) => (
               <div key={i} className="stat" role="listitem">
                 <div className="stat-num" aria-label={`${s.num} ${s.label}`}>{s.num}</div>
@@ -586,11 +586,11 @@ export default function UnifyTalkCosmic() {
 
           {/* FEATURES */}
           <section className="section" id="features" aria-labelledby="features-title">
-            <div className="section-eyebrow" style={{ background:"rgba(168,85,247,0.1)", border:"1px solid rgba(168,85,247,0.25)", color:"#c084fc" }} aria-hidden="true">
+            <div className="section-eyebrow" style={{ background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.25)", color: "#c084fc" }} aria-hidden="true">
               ✦ <T text="Core Features" tag="none" />
             </div>
             <h2 className="section-title" id="features-title">
-              <T text="Built for" tag="none" /> <span style={{ background:"linear-gradient(90deg,#a855f7,#06b6d4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}><T text="Every Ability" tag="none" /></span>
+              <T text="Built for" tag="none" /> <span style={{ background: "linear-gradient(90deg,#a855f7,#06b6d4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}><T text="Every Ability" tag="none" /></span>
             </h2>
             <p className="section-sub"><T text="Six powerful tools, each designed for a specific communication need — all in one unified platform." tag="none" /></p>
             <div className="features-grid" role="list">
@@ -606,11 +606,11 @@ export default function UnifyTalkCosmic() {
 
           {/* HOW IT WORKS */}
           <section className="section" id="how" aria-labelledby="how-it-works-title" style={{ paddingTop: 0 }}>
-            <div className="section-eyebrow" style={{ background:"rgba(6,182,212,0.1)", border:"1px solid rgba(6,182,212,0.25)", color:"#67e8f9" }} aria-hidden="true">
+            <div className="section-eyebrow" style={{ background: "rgba(6,182,212,0.1)", border: "1px solid rgba(6,182,212,0.25)", color: "#67e8f9" }} aria-hidden="true">
               ✦ <T text="How It Works" tag="none" />
             </div>
             <h2 className="section-title" id="how-it-works-title">
-              <T text="4 Simple" tag="none" /> <span style={{ background:"linear-gradient(90deg,#06b6d4,#a855f7)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}><T text="Steps" tag="none" /></span>
+              <T text="4 Simple" tag="none" /> <span style={{ background: "linear-gradient(90deg,#06b6d4,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}><T text="Steps" tag="none" /></span>
             </h2>
             <p className="section-sub"><T text="Getting started with UnifyTalk takes less than 2 minutes." tag="none" /></p>
             <div className="steps-wrap" role="list">
@@ -627,11 +627,11 @@ export default function UnifyTalkCosmic() {
           </section>
 
           <section className="section" id="who" aria-labelledby="who-it-helps-title" style={{ paddingTop: 0 }}>
-            <div className="section-eyebrow" style={{ background:"rgba(168,85,247,0.1)", border:"1px solid rgba(168,85,247,0.25)", color:"#c084fc" }} aria-hidden="true">
+            <div className="section-eyebrow" style={{ background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.25)", color: "#c084fc" }} aria-hidden="true">
               ✦ <T text="Who It Helps" tag="none" />
             </div>
             <h2 className="section-title" id="who-it-helps-title">
-              <T text="Built" tag="none" /> <span style={{ background:"linear-gradient(90deg,#c084fc,#67e8f9)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}><T text="For Them" tag="none" /></span>
+              <T text="Built" tag="none" /> <span style={{ background: "linear-gradient(90deg,#c084fc,#67e8f9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}><T text="For Them" tag="none" /></span>
             </h2>
             <p className="section-sub"><T text="Three groups who have been underserved by technology for too long." tag="none" /></p>
             <div className="who-grid" role="list">
@@ -643,7 +643,7 @@ export default function UnifyTalkCosmic() {
                   <div className="who-features" role="list">
                     {w.features.map((f, j) => (
                       <div key={j} className="who-feature" role="listitem">
-                        <div className="who-feature-dot" style={{ background: w.tc }} aria-hidden="true"/>
+                        <div className="who-feature-dot" style={{ background: w.tc }} aria-hidden="true" />
                         <T text={f} tag="none" />
                       </div>
                     ))}
@@ -655,18 +655,18 @@ export default function UnifyTalkCosmic() {
 
           {/* TESTIMONIALS */}
           <section className="section" aria-labelledby="testimonials-title" style={{ paddingTop: 0 }}>
-            <div className="section-eyebrow" style={{ background:"rgba(6,182,212,0.1)", border:"1px solid rgba(6,182,212,0.25)", color:"#67e8f9" }} aria-hidden="true">
+            <div className="section-eyebrow" style={{ background: "rgba(6,182,212,0.1)", border: "1px solid rgba(6,182,212,0.25)", color: "#67e8f9" }} aria-hidden="true">
               ✦ <T text="Real Stories" tag="none" />
             </div>
             <h2 className="section-title" id="testimonials-title">
-              <T text="What" tag="none" /> <span style={{ background:"linear-gradient(90deg,#67e8f9,#c084fc)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}><T text="Users Say" tag="none" /></span>
+              <T text="What" tag="none" /> <span style={{ background: "linear-gradient(90deg,#67e8f9,#c084fc)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}><T text="Users Say" tag="none" /></span>
             </h2>
             <p className="section-sub"><T text="Real experiences from people whose lives are being changed by UnifyTalk." tag="none" /></p>
             <div className="testimonials-grid" role="list">
               {TESTIMONIALS.map((t, i) => (
                 <div key={i} className="testi-card" role="listitem">
                   <div className="testi-stars" aria-label="5 stars rating">
-                    {[1,2,3,4,5].map(s => <span key={s} className="testi-star" aria-hidden="true">★</span>)}
+                    {[1, 2, 3, 4, 5].map(s => <span key={s} className="testi-star" aria-hidden="true">★</span>)}
                   </div>
                   <blockquote className="testi-text">"<T text={t.text} tag="none" />"</blockquote>
                   <div className="testi-author">
@@ -686,11 +686,11 @@ export default function UnifyTalkCosmic() {
 
           {/* PHASES */}
           <section className="section" aria-labelledby="phases-title" style={{ paddingTop: 0 }}>
-            <div className="section-eyebrow" style={{ background:"rgba(168,85,247,0.1)", border:"1px solid rgba(168,85,247,0.25)", color:"#c084fc" }} aria-hidden="true">
+            <div className="section-eyebrow" style={{ background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.25)", color: "#c084fc" }} aria-hidden="true">
               ✦ <T text="Build Phases" tag="none" />
             </div>
             <h2 className="section-title" id="phases-title">
-              <T text="6 Phases." tag="none" /> <span style={{ background:"linear-gradient(90deg,#06b6d4,#a855f7)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}><T text="One Platform." tag="none" /></span>
+              <T text="6 Phases." tag="none" /> <span style={{ background: "linear-gradient(90deg,#06b6d4,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}><T text="One Platform." tag="none" /></span>
             </h2>
             <p className="section-sub"><T text="Built phase by phase — each fully functional and demo-ready on its own." tag="none" /></p>
             <div className="phases-list" role="list">
@@ -711,11 +711,11 @@ export default function UnifyTalkCosmic() {
 
           {/* TECH STACK */}
           <section className="section" aria-labelledby="tech-stack-title" style={{ paddingTop: 0 }}>
-            <div className="section-eyebrow" style={{ background:"rgba(6,182,212,0.1)", border:"1px solid rgba(6,182,212,0.25)", color:"#67e8f9" }} aria-hidden="true">
+            <div className="section-eyebrow" style={{ background: "rgba(6,182,212,0.1)", border: "1px solid rgba(6,182,212,0.25)", color: "#67e8f9" }} aria-hidden="true">
               ✦ <T text="Tech Stack" tag="none" />
             </div>
             <h2 className="section-title" id="tech-stack-title">
-              <T text="Powered by" tag="none" /> <span style={{ background:"linear-gradient(90deg,#67e8f9,#a855f7)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}><T text="Modern Tech" tag="none" /></span>
+              <T text="Powered by" tag="none" /> <span style={{ background: "linear-gradient(90deg,#67e8f9,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}><T text="Modern Tech" tag="none" /></span>
             </h2>
             <p className="section-sub"><T text="Built with industry-standard tools used by top tech companies worldwide." tag="none" /></p>
             <div className="tech-grid" role="list">
@@ -731,11 +731,11 @@ export default function UnifyTalkCosmic() {
 
           {/* TEAM */}
           <section className="section" id="team" aria-labelledby="team-title" style={{ paddingTop: 0 }}>
-            <div className="section-eyebrow" style={{ background:"rgba(168,85,247,0.1)", border:"1px solid rgba(168,85,247,0.25)", color:"#c084fc" }} aria-hidden="true">
+            <div className="section-eyebrow" style={{ background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.25)", color: "#c084fc" }} aria-hidden="true">
               ✦ The Team
             </div>
             <h2 className="section-title" id="team-title">
-              Built with <span style={{ background:"linear-gradient(90deg,#c084fc,#67e8f9)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Heart</span>
+              Built with <span style={{ background: "linear-gradient(90deg,#c084fc,#67e8f9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Heart</span>
             </h2>
             <p className="section-sub">Two BTech students from Bengaluru on a mission to make communication universal.</p>
             <div className="team-grid" role="list">
@@ -765,7 +765,7 @@ export default function UnifyTalkCosmic() {
               <p className="cta-sub">
                 <T text="UnifyTalk is free, open, and built with heart. Every voice deserves to be heard — and now it can be." tag="none" />
               </p>
-              <div style={{ display:"flex", gap:14, flexWrap:"wrap", justifyContent:"center" }}>
+              <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center" }}>
                 <button className="btn-primary" onClick={() => showToast("🚀 Opening app!")} aria-label="Launch UnifyTalk platform">
                   🚀 <T text="Start Communicating" tag="none" />
                 </button>
@@ -774,7 +774,7 @@ export default function UnifyTalkCosmic() {
                 </button>
               </div>
               <p className="cta-credit">
-                Built by <strong>Ansika</strong> & <strong>Bishnu Kumar Sardar</strong><br/>
+                Built by <strong>Ansika singh</strong> & <strong>Bishnu Kumar Sardar</strong><br />
                 Cambridge Institute of Technology · Bengaluru · 2025
               </p>
             </div>
@@ -784,11 +784,11 @@ export default function UnifyTalkCosmic() {
         {/* FOOTER */}
         <footer className="footer" aria-label="Site footer">
           <div className="footer-left">
-            <strong>UnifyTalk</strong> · <T text="Every voice deserves to be heard." tag="none" /><br/>
+            <strong>UnifyTalk</strong> · <T text="Every voice deserves to be heard." tag="none" /><br />
             Made with 💜 by Ansika & Bishnu · Bengaluru, India · 2025
           </div>
           <div className="footer-links" role="list">
-            {["Features","How It Works","Community","GitHub"].map(l => (
+            {["Features", "How It Works", "Community", "GitHub"].map(l => (
               <button key={l} className="footer-link" role="listitem" onClick={() => showToast(`📄 Opening ${l}…`)}><T text={l} tag="none" /></button>
             ))}
           </div>
