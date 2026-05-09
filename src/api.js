@@ -72,16 +72,14 @@ export const getVoiceStats          = ()     => API.get('/api/accessibility/voic
 // ── Smart Phrase Suggestions ──────────────────────────────────────────────────
 export const getSmartSuggestions = (data) => API.post('/api/smart-phrases/suggest', data);
 
-// ── Translation (MyMemory — free, no CORS issues) ─────────────────────────────
+// ── Translation (Google Translate — free, accurate) ───────────────────────────
 export const translateText = async ({ text, from = 'en', to }) => {
   try {
-    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}&de=test@test.com`;
+    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(text)}`;
     const res = await fetch(url);
     const data = await res.json();
-    if (data.responseStatus === 200) {
-      return { data: { translatedText: data.responseData.translatedText } };
-    }
-    return { data: { translatedText: text } };
+    const translatedText = data[0].map(item => item[0]).join('');
+    return { data: { translatedText } };
   } catch {
     return { data: { translatedText: text } };
   }
