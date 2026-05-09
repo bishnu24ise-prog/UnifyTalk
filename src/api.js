@@ -72,16 +72,14 @@ export const getVoiceStats          = ()     => API.get('/api/accessibility/voic
 // ── Smart Phrase Suggestions ──────────────────────────────────────────────────
 export const getSmartSuggestions = (data) => API.post('/api/smart-phrases/suggest', data);
 
-// ── Translation (LibreTranslate — accurate & free) ────────────────────────────
+// ── Translation (Google Translate — free, accurate, all languages) ─────────────
 export const translateText = async ({ text, from = 'en', to }) => {
   try {
-    const res = await fetch('https://libretranslate.com/translate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ q: text, source: from, target: to, format: 'text' })
-    });
+    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(text)}`;
+    const res = await fetch(url);
     const data = await res.json();
-    return { data: { translatedText: data.translatedText || text } };
+    const translatedText = data[0].map(item => item[0]).join('');
+    return { data: { translatedText } };
   } catch {
     return { data: { translatedText: text } };
   }
