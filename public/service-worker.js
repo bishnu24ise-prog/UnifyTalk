@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-globals */
 
-const CACHE_NAME = 'unifytalk-v1';
+const CACHE_NAME = 'unifytalk-v2'; // ← bumped version
+
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -30,12 +31,11 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch: network-first for API, cache-first for static
+// Fetch: network-first for everything
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Skip non-GET requests
   if (request.method !== 'GET') return;
 
   // API calls: network-first with offline fallback
@@ -52,23 +52,23 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Static assets: cache-first
+  // ✅ FIXED: network-first for ALL static assets
   event.respondWith(
-    caches.match(request).then((cached) => {
-      if (cached) return cached;
-      return fetch(request).then((response) => {
-        // Cache successful responses
+    fetch(request)
+      .then((response) => {
         if (response.status === 200) {
           const clone = response.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
         }
         return response;
-      });
-    }).catch(() => {
-      // Fallback for navigation requests
-      if (request.mode === 'navigate') {
-        return caches.match('/index.html');
-      }
-    })
+      })
+      .catch(() => {
+        return caches.match(request).then((cached) => {
+          if (cached) return cached;
+          if (request.mode === 'navigate') {
+            return caches.match('/index.html');
+          }
+        });
+      })
   );
 });
