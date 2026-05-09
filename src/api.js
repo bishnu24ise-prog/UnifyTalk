@@ -72,11 +72,17 @@ export const getVoiceStats          = ()     => API.get('/api/accessibility/voic
 // ── Smart Phrase Suggestions ──────────────────────────────────────────────────
 export const getSmartSuggestions = (data) => API.post('/api/smart-phrases/suggest', data);
 
-// ── Translation (Free MyMemory API — no key needed) ───────────────────────────
+// ── Translation (LibreTranslate — accurate & free) ────────────────────────────
 export const translateText = async ({ text, from = 'en', to }) => {
-  const res = await fetch(
-    `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`
-  );
-  const data = await res.json();
-  return { data: { translatedText: data.responseData.translatedText } };
+  try {
+    const res = await fetch('https://libretranslate.com/translate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ q: text, source: from, target: to, format: 'text' })
+    });
+    const data = await res.json();
+    return { data: { translatedText: data.translatedText || text } };
+  } catch {
+    return { data: { translatedText: text } };
+  }
 };
