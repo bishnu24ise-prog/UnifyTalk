@@ -8,12 +8,15 @@ const translateText = async (text, to) => {
   const key = `${to}:${text}`;
   if (cache[key]) return cache[key];
   try {
-    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${to}&dt=t&q=${encodeURIComponent(text)}`;
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text.substring(0, 450))}&langpair=en|${to}&de=unifytalk@gmail.com`;
     const res = await fetch(url);
     const data = await res.json();
-    const result = data[0].map(item => item[0]).join('');
-    cache[key] = result;
-    return result;
+    if (data.responseStatus === 200 && data.responseData.translatedText) {
+      const result = data.responseData.translatedText;
+      cache[key] = result;
+      return result;
+    }
+    return text;
   } catch {
     return text;
   }
