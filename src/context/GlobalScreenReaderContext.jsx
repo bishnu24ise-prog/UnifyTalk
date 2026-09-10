@@ -25,6 +25,7 @@ export const GlobalScreenReaderProvider = ({ children }) => {
       }
       return next;
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const speak = useCallback((text, force = false) => {
