@@ -222,6 +222,7 @@ const styles = `
     inset: 0; border-radius: 16px;
     background: linear-gradient(135deg, rgba(52,211,153,0.08), rgba(56,189,248,0.04));
     opacity: 0; transition: opacity 0.2s;
+    pointer-events: none;
   }
 
   .p3-phrase-card:hover {
