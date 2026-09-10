@@ -299,10 +299,10 @@ export default function App() {
     <ThemeProvider>
       <AuthProvider>
         <NotificationProvider>
-        <GlobalScreenReaderProvider>
           <style>{globalStyles}</style>
           <a href="#main-content" className="skip-link">Skip to main content</a>
           <BrowserRouter>
+            <GlobalScreenReaderProvider>
             <ScrollTop />
             <GlobalNav />
             <NotificationBanner />
@@ -322,8 +322,8 @@ export default function App() {
                 <Route path="*"          element={<NotFound/>} />
               </Routes>
             </div>
+            </GlobalScreenReaderProvider>
           </BrowserRouter>
-        </GlobalScreenReaderProvider>
         </NotificationProvider>
       </AuthProvider>
     </ThemeProvider>
