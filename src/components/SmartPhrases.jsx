@@ -102,7 +102,13 @@ export default function SmartPhrases({ context = 'general', onSpeak, onCopy }) {
       // Try backend first
       const res = await getSmartSuggestions({ context, timeOfDay: new Date().getHours() });
       if (res.data?.suggestions?.length) {
-        setSuggestions(res.data.suggestions);
+        const formattedSuggestions = res.data.suggestions.map(s => {
+          if (typeof s === 'string') {
+            return { icon: '💬', text: s, cat: 'Smart', reason: 'AI Suggestion' };
+          }
+          return s;
+        });
+        setSuggestions(formattedSuggestions);
         setLoading(false);
         return;
       }

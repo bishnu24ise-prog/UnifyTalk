@@ -570,12 +570,14 @@ export default function UnifyTalkPhase3() {
   }, [setToast, announce]);
 
   const speak = useCallback((text) => {
-    if (!window.speechSynthesis) { showToast("⚠️ TTS not supported", "red"); return; }
+    if (!text || !window.speechSynthesis) { showToast("⚠️ TTS not supported or empty text", "red"); return; }
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.rate = 0.92; u.pitch = 1.05;
+    window.lastUtterance = u; // Prevent garbage collection bug in Chrome
     u.onstart = () => { setIsSpeaking(true); announce("Speaking message"); };
     u.onend   = () => setIsSpeaking(false);
+    u.onerror = (e) => { console.error("Speech error", e); setIsSpeaking(false); };
     window.speechSynthesis.speak(u);
     showToast("🔊 Speaking…", "blue");
     if (navigator.vibrate) navigator.vibrate(40);
