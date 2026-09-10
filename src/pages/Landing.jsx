@@ -147,7 +147,7 @@ const styles = `
   .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(168,85,247,0.45); }
 
   /* HERO */
-  .hero { position: relative; z-index: 2; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; }
+  .hero { position: relative; z-index: 2; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 160px; }
   .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 20px; border-radius: 100px; margin-bottom: 32px; background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); font-size: 12px; color: var(--p2); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; animation: fadeDown 0.8s ease both; }
   .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--p2); box-shadow: 0 0 8px var(--p2); animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.4;transform:scale(0.7);} }
@@ -170,7 +170,7 @@ const styles = `
   .chip { padding: 8px 18px; border-radius: 100px; background: rgba(168,85,247,0.07); border: 1px solid var(--border); font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 7px; transition: all 0.2s; cursor: default; }
   .chip:hover { border-color: var(--p); color: var(--p2); background: rgba(168,85,247,0.12); }
 
-  .scroll-hint { margin-top: 48px; display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; animation: fadeUp 1s 0.8s ease both; }
+  .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; animation: fadeUp 1s 0.8s ease both; }
   .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--p), transparent); animation: scrollAnim 1.8s ease-in-out infinite; }
   @keyframes scrollAnim { 0%{transform:scaleY(0);transform-origin:top;opacity:1;} 50%{transform:scaleY(1);transform-origin:top;} 100%{transform:scaleY(1);transform-origin:bottom;opacity:0;} }
 
