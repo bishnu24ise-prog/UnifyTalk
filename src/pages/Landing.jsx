@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import T from "../components/T";
 
 const styles = `
@@ -504,9 +505,9 @@ export default function UnifyTalkCosmic() {
               <li><a href="#who" className="nav-link"><T text="Who It Helps" tag="none" /></a></li>
               <li><a href="#team" className="nav-link"><T text="Team" tag="none" /></a></li>
             </ul>
-            <button className="nav-cta" onClick={() => showToast("🚀 App is running at localhost:3000!")} aria-label="Launch UnifyTalk App">
+            <Link to="/auth" className="nav-cta" style={{textDecoration: 'none'}} aria-label="Launch UnifyTalk App">
               <T text="Launch App" tag="none" /> <span aria-hidden="true">→</span>
-            </button>
+            </Link>
           </nav>
         </header>
 
@@ -530,12 +531,12 @@ export default function UnifyTalkCosmic() {
             </p>
 
             <div className="hero-actions">
-              <button className="btn-primary" onClick={() => showToast("🚀 Opening app!")} aria-label="Launch UnifyTalk platform">
+              <Link to="/auth" className="btn-primary" style={{textDecoration: 'none'}} aria-label="Launch UnifyTalk platform">
                 🤝 <T text="Launch UnifyTalk" tag="none" />
-              </button>
-              <button className="btn-ghost" onClick={() => showToast("📖 Scroll down to explore!")} aria-label="Explore Features">
+              </Link>
+              <a href="#features" className="btn-ghost" style={{textDecoration: 'none'}} aria-label="Explore Features">
                 <T text="Explore Features" tag="none" /> <span aria-hidden="true">↓</span>
-              </button>
+              </a>
             </div>
 
             <div className="hero-chips" role="list" aria-label="Platform capabilities">
@@ -766,12 +767,12 @@ export default function UnifyTalkCosmic() {
                 <T text="UnifyTalk is free, open, and built with heart. Every voice deserves to be heard — and now it can be." tag="none" />
               </p>
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center" }}>
-                <button className="btn-primary" onClick={() => showToast("🚀 Opening app!")} aria-label="Launch UnifyTalk platform">
+                <Link to="/auth" className="btn-primary" style={{textDecoration: 'none'}} aria-label="Launch UnifyTalk platform">
                   🚀 <T text="Start Communicating" tag="none" />
-                </button>
-                <button className="btn-ghost" onClick={() => showToast("⭐ Thank you for supporting!")} aria-label="Support the project">
+                </Link>
+                <a href="https://github.com/Ansika-Singh/UnifyTalk" target="_blank" rel="noreferrer" className="btn-ghost" style={{textDecoration: 'none'}} aria-label="Support the project">
                   ⭐ <T text="Support the Project" tag="none" />
-                </button>
+                </a>
               </div>
               <p className="cta-credit">
                 Built by <strong>Ansika singh</strong> & <strong>Bishnu Kumar Sardar</strong><br />
