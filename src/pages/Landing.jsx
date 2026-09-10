@@ -170,7 +170,7 @@ const styles = `
   .chip { padding: 8px 18px; border-radius: 100px; background: rgba(168,85,247,0.07); border: 1px solid var(--border); font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 7px; transition: all 0.2s; cursor: default; }
   .chip:hover { border-color: var(--p); color: var(--p2); background: rgba(168,85,247,0.12); }
 
-  .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; animation: fadeUp 1s 0.8s ease both; }
+  .scroll-hint { margin-top: 48px; display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; animation: fadeUp 1s 0.8s ease both; }
   .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--p), transparent); animation: scrollAnim 1.8s ease-in-out infinite; }
   @keyframes scrollAnim { 0%{transform:scaleY(0);transform-origin:top;opacity:1;} 50%{transform:scaleY(1);transform-origin:top;} 100%{transform:scaleY(1);transform-origin:bottom;opacity:0;} }
 
