@@ -5,6 +5,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import { NotificationProvider } from "./context/NotificationContext";
 import { LanguageProvider, useLanguage } from "./context/LanguageContext";
+import { GlobalScreenReaderProvider, useGlobalScreenReader } from "./context/GlobalScreenReaderContext";
 import NotificationBanner from "./components/NotificationBanner";
 
 import Landing       from "./pages/Landing";
@@ -212,6 +213,7 @@ function GlobalNav() {
   const { user } = useAuth();
   const { theme, cycleTheme } = useTheme();
   const { t } = useLanguage();
+  const { isActive: isScreenReaderActive, toggleScreenReader } = useGlobalScreenReader();
   const navigate = useNavigate();
 
   const NAV_LABELS = { home: t('home') || 'Home', chat: t('chat'), pictograms: t('pictograms'), phrases: t('phrases'), signAI: t('signAI'), screenReader: t('screenReader'), community: t('community'), symptoms: t('symptoms'), emergency: t('emergency') };
@@ -236,6 +238,9 @@ function GlobalNav() {
         ))}
       </div>
       <div className="ut-nav-right">
+        <button className={`ut-nav-theme ${isScreenReaderActive ? 'active' : ''}`} onClick={toggleScreenReader} aria-label={isScreenReaderActive ? "Disable Global Screen Reader" : "Enable Global Screen Reader"} title="Toggle Global Screen Reader" style={isScreenReaderActive ? { borderColor: 'var(--p)', color: 'var(--text)' } : {}}>
+          {isScreenReaderActive ? '🗣️' : '🔇'}
+        </button>
         <button className="ut-nav-theme" onClick={cycleTheme} aria-label={`Theme: ${theme}`} title={`Current: ${theme}`}>
           {themeIcons[theme] || '🌙'}
         </button>
@@ -294,6 +299,7 @@ export default function App() {
     <ThemeProvider>
       <AuthProvider>
         <NotificationProvider>
+        <GlobalScreenReaderProvider>
           <style>{globalStyles}</style>
           <a href="#main-content" className="skip-link">Skip to main content</a>
           <BrowserRouter>
@@ -317,6 +323,7 @@ export default function App() {
               </Routes>
             </div>
           </BrowserRouter>
+        </GlobalScreenReaderProvider>
         </NotificationProvider>
       </AuthProvider>
     </ThemeProvider>
