@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+const isLocalhost = Boolean(
+  typeof window !== 'undefined' &&
+  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+);
+
+const API_BASE_URL = process.env.REACT_APP_API_URL || (isLocalhost ? 'http://localhost:5000' : 'https://unifytalk-backend.onrender.com');
+
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000'
+  baseURL: API_BASE_URL
 });
 
 // Automatically attach JWT token to every request
