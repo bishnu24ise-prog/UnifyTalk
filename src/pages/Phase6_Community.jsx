@@ -447,20 +447,6 @@ export default function UnifyTalkPhase6() {
           Alt + 4: Settings.
         </div>
 
-        <header className="p6-header">
-          <div className="p6-logo">
-            <div className="p6-logo-icon" aria-hidden="true">🤝</div>
-            <div className="p6-logo-text">UnifyTalk</div>
-          </div>
-          <div className="p6-header-right">
-            <div className="p6-phase-badge">🚀 8 Phases Available!</div>
-            <button className="p6-user-pill" onClick={()=>setActiveTab("profile")} aria-label="View profile">
-              <div className="p6-avatar" style={{background:profile.avatarColor}} aria-hidden="true">{profile.avatar}</div>
-              {profile.name.split(" ")[0]}
-            </button>
-          </div>
-        </header>
-
         <nav className="p6-nav" aria-label="Dashboard navigation">
           {TABS.map(t=>(
             <button key={t.id} className={`p6-nav-btn ${activeTab===t.id?"active":""}`} onClick={()=>setActiveTab(t.id)} aria-pressed={activeTab===t.id}>

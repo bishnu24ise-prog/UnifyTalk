@@ -685,15 +685,6 @@ export default function UnifyTalkPhase3() {
           Alt + C: Copy current emotion message.
         </div>
 
-        {/* HEADER */}
-        <header className="p3-header">
-          <div className="p3-logo">
-            <div className="p3-logo-icon" aria-hidden="true">🤝</div>
-            <div className="p3-logo-text">UnifyTalk</div>
-          </div>
-          <div className="p3-phase-badge">Phase 3 — Phrases & Emotions</div>
-        </header>
-
         <main id="main-phrases">
           {/* PAGE TITLE */}
           <section className="p3-title" aria-labelledby="page-title">

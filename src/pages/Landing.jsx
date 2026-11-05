@@ -430,7 +430,6 @@ const MARQUEE_ITEMS = [
 ];
 
 export default function UnifyTalkCosmic() {
-  const [scrolled, setScrolled] = useState(false);
   const [toast, setToast] = useState(null);
   const [counters, setCounters] = useState({ users: 0, countries: 0, accuracy: 0, uptime: 0 });
 
@@ -438,9 +437,6 @@ export default function UnifyTalkCosmic() {
 
   useEffect(() => {
     document.title = "UnifyTalk | Universal Accessibility Platform for Deaf, Mute, and Blind";
-    const fn = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
   }, []);
 
   // Animated counters
@@ -483,25 +479,6 @@ export default function UnifyTalkCosmic() {
             ))}
           </div>
         </div>
-
-        {/* NAV */}
-        <header>
-          <nav className={`nav${scrolled ? " scrolled" : ""}`} aria-label="Main navigation">
-            <a href="/" className="nav-logo" aria-label="UnifyTalk Home">
-              <div className="nav-icon" aria-hidden="true">U</div>
-              <span className="nav-name">UnifyTalk</span>
-            </a>
-            <ul className="nav-links">
-              <li><a href="#features" className="nav-link"><T text="Features" tag="none" /></a></li>
-              <li><a href="#how" className="nav-link"><T text="How It Works" tag="none" /></a></li>
-              <li><a href="#who" className="nav-link"><T text="Who It Helps" tag="none" /></a></li>
-              <li><a href="#team" className="nav-link"><T text="Team" tag="none" /></a></li>
-            </ul>
-            <Link to="/auth" className="nav-cta" style={{textDecoration: 'none'}} aria-label="Launch UnifyTalk App">
-              <T text="Launch App" tag="none" /> <span aria-hidden="true">→</span>
-            </Link>
-          </nav>
-        </header>
 
         <main id="main-content">
           {/* HERO */}
@@ -730,7 +707,7 @@ export default function UnifyTalkCosmic() {
             <h2 className="section-title" id="team-title">
               Built with <span style={{ background: "linear-gradient(90deg,#c084fc,#67e8f9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Heart</span>
             </h2>
-            <p className="section-sub">Two BTech students from Bengaluru on a mission to make communication universal.</p>
+            <p className="section-sub">A developer from Bengaluru on a mission to make communication universal.</p>
             <div className="team-grid" role="list">
               {TEAM.map((m, i) => (
                 <div key={i} className="team-card" role="listitem">

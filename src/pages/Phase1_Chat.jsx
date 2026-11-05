@@ -979,21 +979,6 @@ export default function UnifyTalk() {
         </div>
         <div className="ab-bg" />
 
-        {/* HEADER */}
-        <header className="ab-header">
-          <div className="ab-logo">
-            <div className="ab-logo-icon">🤝</div>
-            <div>
-              <div className="ab-logo-text">UnifyTalk</div>
-              <div className="ab-tagline">One platform. Every voice. No limits.</div>
-            </div>
-          </div>
-          <div className="ab-status">
-            <div className="ab-dot" />
-            Live · Phase 1
-          </div>
-        </header>
-
         {/* HERO */}
         <section className="ab-hero">
           <div className="ab-hero-badge">🤝 Uniting Every Voice, Every Ability</div>

@@ -236,11 +236,56 @@ export function LanguageProvider({ children }) {
     return localStorage.getItem('unifytalk-lang') || 'en';
   });
 
+  const applyGoogleTranslate = useCallback((code) => {
+    try {
+      const cookieVal = code === 'en' ? '/en/en' : `/en/${code}`;
+      document.cookie = `googtrans=${cookieVal}; path=/;`;
+      const hostname = window.location.hostname;
+      if (hostname) {
+        document.cookie = `googtrans=${cookieVal}; path=/; domain=${hostname};`;
+        const parts = hostname.split('.');
+        if (parts.length >= 2) {
+          document.cookie = `googtrans=${cookieVal}; path=/; domain=.${parts.slice(-2).join('.')};`;
+        }
+      }
+
+      // Trigger the Google Translate select dropdown if present
+      const triggerCombo = () => {
+        const select = document.querySelector('.goog-te-combo');
+        if (select) {
+          select.value = code;
+          select.dispatchEvent(new Event('change'));
+          return true;
+        }
+        return false;
+      };
+
+      if (!triggerCombo()) {
+        let attempts = 0;
+        const interval = setInterval(() => {
+          attempts++;
+          if (triggerCombo() || attempts > 10) {
+            clearInterval(interval);
+          }
+        }, 300);
+      }
+    } catch (_) {}
+  }, []);
+
   const changeLang = useCallback((code) => {
     setLang(code);
     localStorage.setItem('unifytalk-lang', code);
     document.documentElement.lang = code;
-  }, []);
+    applyGoogleTranslate(code);
+  }, [applyGoogleTranslate]);
+
+  // Synchronize on mount if language was previously selected
+  useState(() => {
+    const saved = localStorage.getItem('unifytalk-lang');
+    if (saved && saved !== 'en') {
+      setTimeout(() => applyGoogleTranslate(saved), 500);
+    }
+  });
 
   const t = useCallback((key) => {
     return STRINGS[lang]?.[key] || STRINGS.en[key] || key;

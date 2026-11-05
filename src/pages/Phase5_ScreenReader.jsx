@@ -237,9 +237,14 @@ const styles = `
     position: relative; z-index: 5;
     max-width: 1100px; margin: 0 auto;
     padding: 0 24px 48px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: start; gap: 24px;
   }
-  @media(max-width:780px){ .p5-layout { grid-template-columns:1fr; } }
+  @media(max-width:900px){
+    .p5-layout { grid-template-columns:1fr; padding: 0 16px 36px; }
+    .p5-voice-banner, .p5-a11y-toolbar, .p5-title { padding-left: 16px !important; padding-right: 16px !important; }
+    .p5-banner-inner { padding: 14px 16px !important; }
+  }
 
   /* CARD */
   .p5-card {
@@ -371,7 +376,12 @@ const styles = `
   .p5-kb-action { font-size:12px; color:var(--muted); text-align:center; line-height:1.4; }
 
   /* ARIA SHOWCASE */
-  .p5-aria-demo { padding:20px; display:flex; flex-direction:column; gap:14px; }
+  .p5-aria-demo {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
 
   .p5-aria-item {
     border-radius:14px; border:1px solid var(--border);
@@ -908,9 +918,6 @@ export default function UnifyTalkPhase5() {
     <>
       <style>{styles}</style>
 
-      {/* SKIP LINK */}
-      <a href="#main-content" className="p5-skip">Skip to main content</a>
-
       <div
         className={`p5-root ${highContrast ? "hc" : ""} ${sizeClass} ${focusMode ? "focus-mode" : ""}`}
         role="application"
@@ -940,17 +947,6 @@ export default function UnifyTalkPhase5() {
           Alt + T: Cycle Text Size. 
           Alt + B: Focus Braille Input.
         </div>
-
-        {/* HEADER */}
-        <header className="p5-header" role="banner">
-          <div className="p5-logo" aria-label="UnifyTalk Logo">
-            <div className="p5-logo-icon" aria-hidden="true">🤝</div>
-            <div className="p5-logo-text">UnifyTalk</div>
-          </div>
-          <div className="p5-phase-badge" aria-label="Current phase: Phase 5 Screen Reader">
-            Phase 5 — Screen Reader
-          </div>
-        </header>
 
         {/* VOICE BANNER */}
         <div className="p5-voice-banner" role="region" aria-label="Voice navigation control">
@@ -1382,10 +1378,13 @@ export default function UnifyTalkPhase5() {
                 </button>
               </div>
             </div>
+          </div>
 
-            {/* ARIA SHOWCASE */}
-            <div className="p5-card-header" style={{borderTop:"1px solid var(--border)"}}>
-              <span>🏷️ ARIA Labels in Use</span>
+          {/* ARIA SHOWCASE */}
+          <div className="p5-card" role="region" aria-label="ARIA attributes in use" style={{ gridColumn: '1 / -1' }}>
+            <div className="p5-card-header">
+              <span>🏷️ ARIA Labels & Standards in Use</span>
+              <span style={{ fontSize: 11, color: "var(--accent4)", fontWeight: 600 }}>WCAG 2.1 AA</span>
             </div>
             <div className="p5-aria-demo" role="list" aria-label="ARIA attributes used in this page">
               {[

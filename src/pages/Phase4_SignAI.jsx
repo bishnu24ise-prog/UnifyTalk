@@ -64,7 +64,7 @@ const styles = `
   .p4-mode-tab.active-face { background: rgba(52,211,153,0.12); border-color: var(--accent4); color: var(--accent4); }
 
   .p4-layout { position: relative; z-index: 5; max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; display: grid; grid-template-columns: 1fr 360px; gap: 24px; }
-  @media(max-width:820px){ .p4-layout { grid-template-columns: 1fr; } }
+  @media(max-width:960px){ .p4-layout { grid-template-columns: 1fr; padding: 0 16px 36px; } }
 
   .p4-card { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; overflow: hidden; box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
   .p4-card-header { padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--surface2); display: flex; align-items: center; justify-content: space-between; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; }
@@ -632,8 +632,6 @@ export default function UnifyTalkPhase4() {
       <style>{styles}</style>
       <div className="p4-root" role="application" aria-label="Sign Language and Emotion AI">
         <div className="p4-bg" aria-hidden="true" />
-        
-        <a href="#main-ai" className="p4-skip-link">Skip to AI content</a>
 
         {/* ARIA ANNOUNCEMENT REGION */}
         <div className="sr-only" aria-live="polite" aria-atomic="true">
@@ -651,14 +649,6 @@ export default function UnifyTalkPhase4() {
           Alt + A: Add current detection to sentence. 
           Alt + P: Start/Stop detection or camera.
         </div>
-
-        <header className="p4-header">
-          <div className="p4-logo">
-            <div className="p4-logo-icon" aria-hidden="true">🤝</div>
-            <div className="p4-logo-text">UnifyTalk</div>
-          </div>
-          <div className="p4-phase-badge">Phase 4 — Sign + Emotion AI</div>
-        </header>
 
         <main id="main-ai">
           <section className="p4-title" aria-labelledby="page-title">

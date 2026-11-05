@@ -51,54 +51,74 @@ const globalStyles = `
 
   body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; transition: background 0.3s, color 0.3s; }
 
+  /* GOOGLE TRANSLATE BANNER SUPPRESSION */
+  .goog-te-banner-frame.skiptranslate,
+  .goog-te-banner-frame,
+  #goog-gt-tt,
+  .goog-te-balloon-frame {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  body {
+    top: 0px !important;
+    position: static !important;
+  }
+  .goog-text-highlight {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .skiptranslate iframe {
+    display: none !important;
+  }
+
   .ut-navbar {
     position: fixed; top:0; left:0; right:0; z-index:1000;
-    height: 56px; padding: 0 20px;
+    height: 60px; padding: 0 20px;
     display: flex; align-items: center; justify-content: space-between;
     gap: 12px;
-    background: rgba(8,4,26,0.92); backdrop-filter: blur(16px);
+    background: rgba(8,4,26,0.94); backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
     transition: background 0.3s;
   }
 
-  [data-theme="light"] .ut-navbar { background: rgba(245,243,255,0.92); }
-  [data-theme="high-contrast"] .ut-navbar { background: rgba(0,0,0,0.95); border-bottom-color: #fff; }
+  [data-theme="light"] .ut-navbar { background: rgba(245,243,255,0.94); }
+  [data-theme="high-contrast"] .ut-navbar { background: rgba(0,0,0,0.98); border-bottom-color: #fff; }
 
   .ut-nav-logo {
     display: flex; align-items: center; gap: 8px;
     text-decoration: none; flex-shrink: 0;
-    font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700;
+    font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700;
     background: linear-gradient(90deg, var(--p2), var(--cyan));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
 
   .ut-nav-logo-icon {
-    width: 28px; height: 28px; border-radius: 7px;
+    width: 30px; height: 30px; border-radius: 8px;
     background: linear-gradient(135deg, var(--p), var(--cyan));
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 900; color: white;
+    font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 900; color: white;
     box-shadow: 0 0 14px rgba(168,85,247,0.4);
   }
 
   .ut-nav-links {
-    display: flex; gap: 3px; align-items: center;
+    display: flex; gap: 4px; align-items: center;
     overflow-x: auto; scrollbar-width: none;
     flex: 1 1 auto; min-width: 0;
-    margin: 0 6px;
+    margin: 0 8px;
   }
   .ut-nav-links::-webkit-scrollbar { display: none; }
 
   .ut-nav-item {
-    padding: 5px 10px; border-radius: 8px;
-    font-size: 11.5px; font-weight: 500;
+    padding: 6px 11px; border-radius: 8px;
+    font-size: 12px; font-weight: 500;
     color: var(--muted); text-decoration: none;
     transition: all 0.18s; white-space: nowrap; flex-shrink: 0;
     font-family: 'DM Sans', sans-serif; border: 1px solid transparent;
   }
-  .ut-nav-item:hover { color: var(--text); background: rgba(168,85,247,0.07); }
+  .ut-nav-item:hover { color: var(--text); background: rgba(168,85,247,0.08); }
   .ut-nav-item.active {
-    background: rgba(168,85,247,0.12);
-    border-color: rgba(168,85,247,0.25);
+    background: rgba(168,85,247,0.14);
+    border-color: rgba(168,85,247,0.28);
     color: var(--p2);
   }
 
@@ -115,7 +135,7 @@ const globalStyles = `
     background: rgba(168,85,247,0.08);
     color: var(--p2);
     font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
+    transition: all 0.2s; white-space: nowrap;
   }
   .ut-nav-auth:hover { background: rgba(168,85,247,0.15); border-color: var(--p); }
   .ut-nav-auth.primary {
@@ -124,6 +144,7 @@ const globalStyles = `
     box-shadow: 0 0 12px rgba(168,85,247,0.25);
   }
   .ut-nav-auth.primary:hover { box-shadow: 0 4px 20px rgba(168,85,247,0.4); }
+  
   .ut-nav-logout {
     padding: 6px 12px; border-radius: 8px;
     font-size: 12px; font-weight: 600;
@@ -132,7 +153,7 @@ const globalStyles = `
     background: rgba(244,63,94,0.08);
     color: #fb7185;
     font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
+    transition: all 0.2s; white-space: nowrap;
     display: flex; align-items: center; gap: 4px;
   }
   .ut-nav-logout:hover {
@@ -151,7 +172,7 @@ const globalStyles = `
   .ut-nav-theme:hover { border-color: var(--p); color: var(--text); }
 
   .ut-nav-lang {
-    padding: 5px 8px; border-radius: 8px;
+    padding: 6px 10px; border-radius: 8px;
     background: rgba(168,85,247,0.08); border: 1px solid var(--border);
     color: var(--text); cursor: pointer;
     font-size: 12px; font-weight: 600;
@@ -167,7 +188,21 @@ const globalStyles = `
     color: var(--cyan); font-weight: 600; white-space: nowrap;
   }
 
-  .ut-page { padding-top: 56px; min-height: 100vh; }
+  /* HAMBURGER & MOBILE DRAWER */
+  .ut-nav-hamburger {
+    display: none;
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(168,85,247,0.1); border: 1px solid var(--border);
+    color: var(--text); font-size: 18px; cursor: pointer;
+    align-items: center; justify-content: center; transition: all 0.2s;
+  }
+  .ut-nav-hamburger:hover { border-color: var(--p); background: rgba(168,85,247,0.2); }
+
+  .ut-mobile-drawer {
+    display: none;
+  }
+
+  .ut-page { padding-top: 60px; min-height: 100vh; }
   .ut-page > * { animation: pageIn 0.3s ease both; }
 
   @keyframes pageIn {
@@ -175,71 +210,59 @@ const globalStyles = `
     to   { opacity:1; transform:translateY(0); }
   }
 
-  /* ACCESSIBILITY ENHANCEMENTS */
-  .skip-link {
-    position: absolute; top: -40px; left: 6px; z-index: 10000;
-    background: var(--p); color: white; padding: 8px 16px;
-    text-decoration: none; border-radius: 4px; font-weight: 600;
-    transition: top 0.2s;
-  }
-  .skip-link:focus { top: 6px; }
-
-  *:focus {
-    outline: 2px solid var(--cyan) !important;
-    outline-offset: 2px !important;
-  }
-  button:focus, a:focus, input:focus, textarea:focus, select:focus {
-    outline: 2px solid var(--p) !important;
-    outline-offset: 2px !important;
+  /* RESPONSIVE BREAKPOINTS */
+  @media (max-width: 1200px) {
+    .ut-phase-tag { display: none; }
   }
 
-  @media (prefers-contrast: high) {
-    :root {
-      --bg: #000000;
-      --text: #ffffff;
-      --muted: #cccccc;
-      --border: #ffffff;
+  @media (max-width: 860px) {
+    .ut-navbar { padding: 0 14px; }
+    .ut-nav-links { display: none !important; }
+    .ut-nav-desktop-only { display: none !important; }
+    .ut-nav-hamburger { display: flex !important; }
+
+    .ut-mobile-drawer-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+      animation: fadeIn 0.2s ease;
+    }
+
+    .ut-mobile-drawer {
+      display: flex !important;
+      position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+      background: rgba(8,4,26,0.98); backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      z-index: 1000;
+      flex-direction: column; padding: 20px 16px 40px;
+      overflow-y: auto; gap: 8px;
+      animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .ut-mobile-nav-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px; border-radius: 12px;
+      font-size: 14px; font-weight: 600;
+      color: var(--text); text-decoration: none;
+      background: var(--bg2); border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .ut-mobile-nav-item:hover, .ut-mobile-nav-item.active {
+      background: rgba(168,85,247,0.15);
+      border-color: var(--p); color: var(--p2);
+    }
+    .ut-mobile-actions {
+      margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 10px;
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
-
-  .ut-404 {
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: center; min-height: 80vh;
-    gap: 16px; text-align: center; padding: 24px;
-  }
-
-  .ut-404 h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px; font-weight: 900; color: var(--text);
-  }
-
-  .ut-404 p { color: var(--muted); max-width: 380px; line-height: 1.7; font-size: 15px; }
-
-  .ut-404-btn {
-    padding: 12px 28px; border-radius: 12px; border: none; cursor: pointer;
-    background: linear-gradient(135deg, var(--p), var(--cyan));
-    color: white; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 14px;
-    text-decoration: none; display: inline-block;
-  }
-
-  @media(max-width: 1400px) {
-    .ut-phase-tag { display: none; }
-  }
-  @media(max-width: 1200px) {
-    .ut-navbar { padding: 0 12px; gap: 8px; }
-    .ut-nav-item { padding: 4px 7px; font-size: 11px; }
-    .ut-nav-right { gap: 4px; }
-    .ut-nav-auth, .ut-nav-logout { padding: 5px 8px; font-size: 11px; }
-  }
-  @media(max-width: 768px) {
-    .ut-navbar { padding: 0 10px; }
-    .ut-phase-tag { display: none; }
-    .ut-nav-item { padding: 5px 7px; font-size: 11px; }
-    .ut-nav-right { gap: 3px; }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 `;
 
@@ -257,7 +280,12 @@ function GlobalNav() {
   const { lang, changeLang, t, LANGUAGES } = useLanguage();
   const { isActive: isScreenReaderActive, toggleScreenReader } = useGlobalScreenReader();
   const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   // Accessibility Keyboard Shortcuts (Alt+1..8, Alt+H, Alt+D, Alt+E, Alt+R, Alt+T, Alt+K, ?)
   useEffect(() => {
@@ -272,8 +300,9 @@ function GlobalNav() {
         return;
       }
 
-      if (e.key === 'Escape' && isShortcutsOpen) {
-        setIsShortcutsOpen(false);
+      if (e.key === 'Escape') {
+        if (isShortcutsOpen) setIsShortcutsOpen(false);
+        if (mobileOpen) setMobileOpen(false);
         return;
       }
 
@@ -321,7 +350,7 @@ function GlobalNav() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isScreenReaderActive, toggleScreenReader, cycleTheme, navigate, notify, isShortcutsOpen]);
+  }, [isScreenReaderActive, toggleScreenReader, cycleTheme, navigate, notify, isShortcutsOpen, mobileOpen]);
 
   const NAV_LABELS = { home: t('home') || 'Home', chat: t('chat'), pictograms: t('pictograms'), phrases: t('phrases'), signAI: t('signAI'), screenReader: t('screenReader'), community: t('community'), symptoms: t('symptoms'), emergency: t('emergency') };
 
@@ -339,7 +368,7 @@ function GlobalNav() {
   return (
     <>
       <nav className="ut-navbar" aria-label="Main navigation">
-        <NavLink to="/" className="ut-nav-logo" title="UnifyTalk Home (Alt + H)">
+        <NavLink to="/" className="ut-nav-logo" title="UnifyTalk Home (Alt + H)" onClick={() => setMobileOpen(false)}>
           <div className="ut-nav-logo-icon">U</div>
           UnifyTalk
         </NavLink>
@@ -384,30 +413,110 @@ function GlobalNav() {
             {themeIcons[theme] || '🌙'}
           </button>
           <button
-            className="ut-nav-theme"
+            className="ut-nav-theme ut-nav-desktop-only"
             onClick={() => setIsShortcutsOpen(true)}
             aria-label="Keyboard Shortcuts (Press ? or Alt + K)"
             title="Keyboard Shortcuts (Press ? or Alt + K)"
           >
             ⌨️
           </button>
-          {user ? (
-            <>
-              <button className="ut-nav-auth" onClick={() => navigate('/dashboard')} title={t('dashboard')}>
-                👤 {user.name?.split(' ')[0] || t('dashboard')}
+          <div className="ut-nav-desktop-only" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            {user ? (
+              <>
+                <button className="ut-nav-auth" onClick={() => navigate('/dashboard')} title={t('dashboard')}>
+                  👤 {user.name?.split(' ')[0] || t('dashboard')}
+                </button>
+                <button className="ut-nav-logout" onClick={handleLogout} title={t('logout') || "Sign Out"} aria-label={t('logout') || "Sign Out"}>
+                  🚪 {t('logout') || "Sign Out"}
+                </button>
+              </>
+            ) : (
+              <button className="ut-nav-auth primary" onClick={() => navigate('/auth')}>
+                🔐 {t('login')}
               </button>
-              <button className="ut-nav-logout" onClick={handleLogout} title={t('logout') || "Sign Out"} aria-label={t('logout') || "Sign Out"}>
-                🚪 {t('logout') || "Sign Out"}
-              </button>
-            </>
-          ) : (
-            <button className="ut-nav-auth primary" onClick={() => navigate('/auth')}>
-              🔐 {t('login')}
-            </button>
-          )}
-          <div className="ut-phase-tag">{tag}</div>
+            )}
+            <div className="ut-phase-tag">{tag}</div>
+          </div>
+
+          {/* Mobile hamburger button */}
+          <button
+            className="ut-nav-hamburger"
+            onClick={() => setMobileOpen(prev => !prev)}
+            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? '✕' : '☰'}
+          </button>
         </div>
       </nav>
+
+      {/* Mobile Drawer */}
+      {mobileOpen && (
+        <>
+          <div className="ut-mobile-drawer-overlay" onClick={() => setMobileOpen(false)} />
+          <div className="ut-mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, paddingBottom: 8, borderBottom: '1px solid var(--border)' }}>
+              <span style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 600 }}>NAVIGATION</span>
+              <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 100, background: 'rgba(168,85,247,0.15)', color: 'var(--p2)' }}>{tag}</span>
+            </div>
+
+            {NAV_ROUTES.map(r => (
+              <NavLink
+                key={r.path}
+                to={r.path}
+                end={r.exact}
+                className={({ isActive }) => `ut-mobile-nav-item${isActive ? " active" : ""}`}
+                onClick={() => setMobileOpen(false)}
+              >
+                <span style={{ fontSize: 18 }}>{r.icon}</span>
+                <span>{NAV_LABELS[r.key] || r.key}</span>
+              </NavLink>
+            ))}
+
+            <div className="ut-mobile-actions">
+              <button
+                className="ut-mobile-nav-item"
+                onClick={() => { setIsShortcutsOpen(true); setMobileOpen(false); }}
+                style={{ background: 'transparent', cursor: 'pointer', textAlign: 'left', width: '100%' }}
+              >
+                <span>⌨️</span>
+                <span>Keyboard Shortcuts (Alt + K)</span>
+              </button>
+
+              {user ? (
+                <>
+                  <button
+                    className="ut-mobile-nav-item"
+                    onClick={() => { navigate('/dashboard'); setMobileOpen(false); }}
+                    style={{ background: 'rgba(168,85,247,0.1)', cursor: 'pointer', textAlign: 'left', width: '100%', borderColor: 'rgba(168,85,247,0.3)' }}
+                  >
+                    <span>👤</span>
+                    <span>{user.name} ({t('dashboard')})</span>
+                  </button>
+                  <button
+                    className="ut-mobile-nav-item"
+                    onClick={() => { handleLogout(); setMobileOpen(false); }}
+                    style={{ background: 'rgba(244,63,94,0.1)', color: '#fb7185', borderColor: 'rgba(244,63,94,0.3)', cursor: 'pointer', textAlign: 'left', width: '100%' }}
+                  >
+                    <span>🚪</span>
+                    <span>{t('logout') || "Sign Out"}</span>
+                  </button>
+                </>
+              ) : (
+                <button
+                  className="ut-mobile-nav-item"
+                  onClick={() => { navigate('/auth'); setMobileOpen(false); }}
+                  style={{ background: 'linear-gradient(135deg, var(--p), var(--cyan))', color: '#fff', cursor: 'pointer', textAlign: 'left', width: '100%', justifyContent: 'center' }}
+                >
+                  <span>🔐</span>
+                  <span>{t('login') || "Sign In"}</span>
+                </button>
+              )}
+            </div>
+          </div>
+        </>
+      )}
+
       <ShortcutsModal isOpen={isShortcutsOpen} onClose={() => setIsShortcutsOpen(false)} />
     </>
   );
