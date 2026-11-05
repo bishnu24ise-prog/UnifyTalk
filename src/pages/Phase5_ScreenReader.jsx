@@ -581,15 +581,18 @@ const SR_ELEMENTS = [
 
 // ── KEYBOARD SHORTCUTS ───────────────────────────────────────────────
 const KB_SHORTCUTS = [
-  { key:"Tab",    action:"Move to next focusable element" },
+  { key:"Tab",       action:"Move to next focusable element" },
   { key:"Shift+Tab", action:"Move to previous element" },
-  { key:"Enter",  action:"Activate button or link" },
-  { key:"Space",  action:"Toggle checkbox / activate button" },
-  { key:"Arrows", action:"Navigate within a widget" },
-  { key:"Esc",    action:"Close modal or cancel action" },
-  { key:"H",      action:"Jump to next heading" },
-  { key:"B",      action:"Jump to next button" },
-  { key:"F",      action:"Jump to next form field" },
+  { key:"Enter",     action:"Activate button or link" },
+  { key:"Space",     action:"Toggle checkbox / button" },
+  { key:"Arrows",    action:"Navigate within a widget" },
+  { key:"Esc",       action:"Close modal or cancel" },
+  { key:"Alt + S",   action:"Toggle Voice Navigation" },
+  { key:"Alt + R",   action:"Read entire page aloud" },
+  { key:"Alt + Q",   action:"Stop reading aloud" },
+  { key:"Alt + C",   action:"Toggle high contrast mode" },
+  { key:"Alt + T",   action:"Cycle text size" },
+  { key:"Alt + B",   action:"Focus Braille input" },
 ];
 
 // ── ADVANCED FEATURES FOR BLIND USERS ────────────────────────────────

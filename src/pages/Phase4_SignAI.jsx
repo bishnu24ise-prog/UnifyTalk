@@ -63,8 +63,12 @@ const styles = `
   .p4-mode-tab.active-random { background: rgba(251,113,133,0.12); border-color: var(--accent3); color: var(--accent3); }
   .p4-mode-tab.active-face { background: rgba(52,211,153,0.12); border-color: var(--accent4); color: var(--accent4); }
 
-  .p4-layout { position: relative; z-index: 5; max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; display: grid; grid-template-columns: 1fr 360px; gap: 24px; }
-  @media(max-width:960px){ .p4-layout { grid-template-columns: 1fr; padding: 0 16px 36px; } }
+  .p4-layout { position: relative; z-index: 5; max-width: 1100px; margin: 0 auto; padding: 0 24px 24px; display: grid; grid-template-columns: 1fr 380px; align-items: start; gap: 24px; }
+  @media(max-width:960px){ .p4-layout { grid-template-columns: 1fr; padding: 0 16px 20px; } }
+
+  .p4-analytics-section { position: relative; z-index: 5; max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
+  .p4-analytics-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 24px; }
+  @media(max-width:960px){ .p4-analytics-section { padding: 0 16px 36px; } .p4-analytics-grid { grid-template-columns: 1fr; } }
 
   .p4-card { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; overflow: hidden; box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
   .p4-card-header { padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--surface2); display: flex; align-items: center; justify-content: space-between; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; }
@@ -291,7 +295,6 @@ export default function UnifyTalkPhase4() {
   const [backendHistory, setBackendHistory] = useState([]);   // past sessions from DB
   const [backendStats, setBackendStats]     = useState(null); // aggregated stats
   const [backendLoading, setBackendLoading] = useState(false);
-  const [showBackendHistory, setShowBackendHistory] = useState(false);
   const sessionStartRef = useRef(Date.now()); // track session start time
 
   const announce = useCallback((msg) => {
@@ -905,119 +908,127 @@ export default function UnifyTalkPhase4() {
                   ))}
                 </div>
               </section>
-
-              <div style={{ padding: "14px 16px", borderRadius: 16, background: "rgba(56,189,248,0.06)", border: "1px solid rgba(56,189,248,0.15)", fontSize: 12, color: "var(--muted)", lineHeight: 1.8 }} role="note">
-                <div style={{ color: "var(--accent)", fontWeight: 700, marginBottom: 6 }}>🧠 Tech Stack</div>
-                <div><strong style={{ color: "var(--text)" }}>MediaPipe Hands</strong> — 21 landmarks · 30fps</div>
-                <div><strong style={{ color: "var(--accent3)" }}>MediaPipe Face Mesh</strong> — 468 landmarks</div>
-                <div><strong style={{ color: "var(--accent5)" }}>Random Mode</strong> — {ALL_SIGNS.length} signs + {ALL_EMOTIONS.length} emotions</div>
-                <div><strong style={{ color: "var(--accent4)" }}>Backend</strong> — MongoDB session history</div>
-              </div>
-
-              {/* ── BACKEND STATS CARD ─────────────────────────── */}
-              {backendStats && (
-                <section style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 22, overflow: "hidden" }} aria-labelledby="stats-title">
-                  <div className="p4-card-header">
-                    <span id="stats-title">📊 Your Sign Stats</span>
-                    <button
-                      onClick={loadBackendHistory}
-                      style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, color: "var(--muted)" }}
-                      aria-label="Refresh stats"
-                    >
-                      {backendLoading ? "⏳" : "🔄"}
-                    </button>
-                  </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, padding: "16px" }}>
-                    <div style={{ background: "rgba(56,189,248,0.07)", border: "1px solid rgba(56,189,248,0.18)", borderRadius: 12, padding: "12px", textAlign: "center" }}>
-                      <div style={{ fontSize: 22, fontWeight: 800, color: "var(--accent)", fontFamily: "Syne, sans-serif" }}>{backendStats.totalSessions || 0}</div>
-                      <div style={{ fontSize: 10, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.6px" }}>Sessions</div>
-                    </div>
-                    <div style={{ background: "rgba(129,140,248,0.07)", border: "1px solid rgba(129,140,248,0.18)", borderRadius: 12, padding: "12px", textAlign: "center" }}>
-                      <div style={{ fontSize: 22, fontWeight: 800, color: "var(--accent2)", fontFamily: "Syne, sans-serif" }}>{backendStats.totalGestures || 0}</div>
-                      <div style={{ fontSize: 10, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.6px" }}>Gestures</div>
-                    </div>
-                    <div style={{ background: "rgba(52,211,153,0.07)", border: "1px solid rgba(52,211,153,0.18)", borderRadius: 12, padding: "12px", textAlign: "center" }}>
-                      <div style={{ fontSize: 22, fontWeight: 800, color: "var(--accent4)", fontFamily: "Syne, sans-serif" }}>{backendStats.totalSpoken || 0}</div>
-                      <div style={{ fontSize: 10, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.6px" }}>Spoken</div>
-                    </div>
-                    <div style={{ background: "rgba(251,113,133,0.07)", border: "1px solid rgba(251,113,133,0.18)", borderRadius: 12, padding: "12px", textAlign: "center" }}>
-                      <div style={{ fontSize: 22, fontWeight: 800, color: "var(--accent3)", fontFamily: "Syne, sans-serif" }}>
-                        {backendStats.topSigns?.[0]?.emoji || "🤟"}
-                      </div>
-                      <div style={{ fontSize: 10, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.6px" }}>
-                        {backendStats.topSigns?.[0]?._id || "Top Sign"}
-                      </div>
-                    </div>
-                  </div>
-                  {backendStats.topSigns?.length > 1 && (
-                    <div style={{ padding: "0 16px 14px" }}>
-                      <div style={{ fontSize: 10, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.6px", marginBottom: 8 }}>Top Signs</div>
-                      <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                        {backendStats.topSigns.map((s, i) => (
-                          <div key={i} style={{ padding: "4px 10px", borderRadius: 100, background: "rgba(129,140,248,0.1)", border: "1px solid rgba(129,140,248,0.2)", fontSize: 11, color: "var(--accent2)" }}>
-                            {s.emoji} {s._id} <span style={{ color: "var(--muted)" }}>×{s.count}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </section>
-              )}
-
-              {/* ── BACKEND SESSION HISTORY ────────────────────── */}
-              {(backendHistory.length > 0 || backendLoading) && (
-                <section style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 22, overflow: "hidden" }} aria-labelledby="bk-history-title">
-                  <div className="p4-card-header" style={{ cursor: "pointer" }} onClick={() => setShowBackendHistory(v => !v)}>
-                    <span id="bk-history-title">🗂 Saved Sessions</span>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ fontSize: 11, color: "var(--muted)", fontWeight: 400 }}>{backendHistory.length} saved</span>
-                      <span style={{ fontSize: 12, color: "var(--muted)" }}>{showBackendHistory ? "▲" : "▼"}</span>
-                    </div>
-                  </div>
-                  {showBackendHistory && (
-                    <div style={{ padding: "10px 14px", display: "flex", flexDirection: "column", gap: 8, maxHeight: 260, overflowY: "auto", scrollbarWidth: "thin" }}>
-                      {backendLoading && (
-                        <div style={{ color: "var(--muted)", fontSize: 12, textAlign: "center", padding: 12 }}>Loading…</div>
-                      )}
-                      {backendHistory.map(sess => (
-                        <div key={sess._id} style={{ background: "var(--surface2)", border: "1px solid var(--border)", borderRadius: 12, padding: "10px 12px" }}>
-                          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
-                            <div style={{ flex: 1 }}>
-                              <div style={{ fontSize: 13, color: "var(--text)", fontWeight: 600, marginBottom: 3 }}>
-                                💬 {sess.sentence || "(no sentence)"}
-                              </div>
-                              <div style={{ fontSize: 11, color: "var(--muted)", display: "flex", gap: 8, flexWrap: "wrap" }}>
-                                <span>{sess.gestureCount} gestures</span>
-                                <span>·</span>
-                                <span style={{ textTransform: "capitalize" }}>{sess.mode} mode</span>
-                                <span>·</span>
-                                <span>{new Date(sess.createdAt).toLocaleDateString()}</span>
-                              </div>
-                              {sess.signs?.length > 0 && (
-                                <div style={{ marginTop: 6, display: "flex", gap: 4, flexWrap: "wrap" }}>
-                                  {sess.signs.slice(0, 6).map((s, i) => (
-                                    <span key={i} style={{ fontSize: 16 }} title={s.name}>{s.emoji}</span>
-                                  ))}
-                                  {sess.signs.length > 6 && <span style={{ fontSize: 11, color: "var(--muted)" }}>+{sess.signs.length - 6}</span>}
-                                </div>
-                              )}
-                            </div>
-                            <button
-                              onClick={() => handleDeleteSession(sess._id)}
-                              style={{ background: "rgba(244,63,94,0.1)", border: "1px solid rgba(244,63,94,0.2)", borderRadius: 8, color: "var(--danger)", cursor: "pointer", fontSize: 12, padding: "4px 8px", flexShrink: 0 }}
-                              aria-label={`Delete session: ${sess.sentence}`}
-                            >
-                              🗑
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </section>
-              )}
             </aside>
           </div>
+
+          {/* LOWER ANALYTICS & HISTORY SECTION */}
+          <section className="p4-analytics-section" aria-label="Sign Language Analytics and History">
+            <div className="p4-analytics-grid">
+              {/* STATS + TECH STACK */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                {backendStats && (
+                  <section style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 22, overflow: "hidden" }} aria-labelledby="stats-title">
+                    <div className="p4-card-header">
+                      <span id="stats-title">📊 Your Sign Stats</span>
+                      <button
+                        onClick={loadBackendHistory}
+                        style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, color: "var(--muted)" }}
+                        aria-label="Refresh stats"
+                      >
+                        {backendLoading ? "⏳" : "🔄"}
+                      </button>
+                    </div>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, padding: "16px" }}>
+                      <div style={{ background: "rgba(56,189,248,0.07)", border: "1px solid rgba(56,189,248,0.18)", borderRadius: 12, padding: "12px", textAlign: "center" }}>
+                        <div style={{ fontSize: 24, fontWeight: 800, color: "var(--accent)", fontFamily: "Syne, sans-serif" }}>{backendStats.totalSessions || 0}</div>
+                        <div style={{ fontSize: 10, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.6px", marginTop: 4 }}>Sessions</div>
+                      </div>
+                      <div style={{ background: "rgba(129,140,248,0.07)", border: "1px solid rgba(129,140,248,0.18)", borderRadius: 12, padding: "12px", textAlign: "center" }}>
+                        <div style={{ fontSize: 24, fontWeight: 800, color: "var(--accent2)", fontFamily: "Syne, sans-serif" }}>{backendStats.totalGestures || 0}</div>
+                        <div style={{ fontSize: 10, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.6px", marginTop: 4 }}>Gestures</div>
+                      </div>
+                      <div style={{ background: "rgba(52,211,153,0.07)", border: "1px solid rgba(52,211,153,0.18)", borderRadius: 12, padding: "12px", textAlign: "center" }}>
+                        <div style={{ fontSize: 24, fontWeight: 800, color: "var(--accent4)", fontFamily: "Syne, sans-serif" }}>{backendStats.totalSpoken || 0}</div>
+                        <div style={{ fontSize: 10, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.6px", marginTop: 4 }}>Spoken</div>
+                      </div>
+                      <div style={{ background: "rgba(251,113,133,0.07)", border: "1px solid rgba(251,113,133,0.18)", borderRadius: 12, padding: "12px", textAlign: "center" }}>
+                        <div style={{ fontSize: 24, fontWeight: 800, color: "var(--accent3)", fontFamily: "Syne, sans-serif" }}>
+                          {backendStats.topSigns?.[0]?.emoji || "🤟"}
+                        </div>
+                        <div style={{ fontSize: 10, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.6px", marginTop: 4 }}>
+                          {backendStats.topSigns?.[0]?._id || "Top Sign"}
+                        </div>
+                      </div>
+                    </div>
+                    {backendStats.topSigns?.length > 1 && (
+                      <div style={{ padding: "0 16px 14px" }}>
+                        <div style={{ fontSize: 10, color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.6px", marginBottom: 8 }}>Top Signs</div>
+                        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                          {backendStats.topSigns.map((s, i) => (
+                            <div key={i} style={{ padding: "4px 10px", borderRadius: 100, background: "rgba(129,140,248,0.1)", border: "1px solid rgba(129,140,248,0.2)", fontSize: 11, color: "var(--accent2)" }}>
+                              {s.emoji} {s._id} <span style={{ color: "var(--muted)" }}>×{s.count}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </section>
+                )}
+
+                <div style={{ padding: "16px 18px", borderRadius: 20, background: "rgba(56,189,248,0.06)", border: "1px solid rgba(56,189,248,0.15)", fontSize: 12, color: "var(--muted)", lineHeight: 1.8 }} role="note">
+                  <div style={{ color: "var(--accent)", fontWeight: 700, marginBottom: 6 }}>🧠 Tech Stack & Architecture</div>
+                  <div><strong style={{ color: "var(--text)" }}>MediaPipe Hands</strong> — 21 landmarks · 30fps real-time tracking</div>
+                  <div><strong style={{ color: "var(--accent3)" }}>MediaPipe Face Mesh</strong> — 468 landmark emotion recognition</div>
+                  <div><strong style={{ color: "var(--accent5)" }}>Random Mode</strong> — {ALL_SIGNS.length} signs + {ALL_EMOTIONS.length} emotions</div>
+                  <div><strong style={{ color: "var(--accent4)" }}>Backend Sync</strong> — Persistent MongoDB session history</div>
+                </div>
+              </div>
+
+              {/* SAVED SESSIONS */}
+              <section style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 22, overflow: "hidden" }} aria-labelledby="bk-history-title">
+                <div className="p4-card-header">
+                  <span id="bk-history-title">🗂 Saved Sessions History</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ fontSize: 11, color: "var(--accent4)", fontWeight: 600 }}>{backendHistory.length} saved</span>
+                  </div>
+                </div>
+                <div style={{ padding: "16px", display: "flex", flexDirection: "column", gap: 10, maxHeight: 340, overflowY: "auto", scrollbarWidth: "thin" }}>
+                  {backendLoading && (
+                    <div style={{ color: "var(--muted)", fontSize: 12, textAlign: "center", padding: 14 }}>Loading…</div>
+                  )}
+                  {backendHistory.length === 0 && !backendLoading ? (
+                    <div style={{ color: "var(--muted)", fontSize: 13, textAlign: "center", padding: "30px 16px" }}>
+                      No saved sessions yet. Start speaking sentences to record your history!
+                    </div>
+                  ) : (
+                    backendHistory.map(sess => (
+                      <div key={sess._id} style={{ background: "var(--surface2)", border: "1px solid var(--border)", borderRadius: 14, padding: "12px 14px" }}>
+                        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8 }}>
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontSize: 13, color: "var(--text)", fontWeight: 600, marginBottom: 4 }}>
+                              💬 {sess.sentence || "(no sentence)"}
+                            </div>
+                            <div style={{ fontSize: 11, color: "var(--muted)", display: "flex", gap: 8, flexWrap: "wrap" }}>
+                              <span>{sess.gestureCount} gestures</span>
+                              <span>·</span>
+                              <span style={{ textTransform: "capitalize" }}>{sess.mode} mode</span>
+                              <span>·</span>
+                              <span>{new Date(sess.createdAt).toLocaleDateString()}</span>
+                            </div>
+                            {sess.signs?.length > 0 && (
+                              <div style={{ marginTop: 6, display: "flex", gap: 4, flexWrap: "wrap" }}>
+                                {sess.signs.slice(0, 8).map((s, i) => (
+                                  <span key={i} style={{ fontSize: 16 }} title={s.name}>{s.emoji}</span>
+                                ))}
+                                {sess.signs.length > 8 && <span style={{ fontSize: 11, color: "var(--muted)" }}>+{sess.signs.length - 8}</span>}
+                              </div>
+                            )}
+                          </div>
+                          <button
+                            onClick={() => handleDeleteSession(sess._id)}
+                            style={{ background: "rgba(244,63,94,0.1)", border: "1px solid rgba(244,63,94,0.2)", borderRadius: 8, color: "var(--danger)", cursor: "pointer", fontSize: 12, padding: "6px 10px", flexShrink: 0 }}
+                            aria-label={`Delete session: ${sess.sentence}`}
+                          >
+                            🗑
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </section>
+            </div>
+          </section>
         </main>
 
         <footer className="p4-footer">
