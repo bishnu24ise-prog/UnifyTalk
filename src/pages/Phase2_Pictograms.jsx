@@ -34,32 +34,6 @@ const styles = `
       radial-gradient(ellipse 40% 30% at 50% 100%, rgba(52,211,153,0.05) 0%, transparent 60%);
   }
 
-  .ut-header {
-    position: sticky; top: 0; z-index: 100;
-    padding: 14px 32px;
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(6,8,15,0.88); backdrop-filter: blur(16px);
-  }
-
-  .ut-logo { display: flex; align-items: center; gap: 10px; }
-  .ut-logo-icon {
-    width: 38px; height: 38px; border-radius: 11px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    display: flex; align-items: center; justify-content: center; font-size: 18px;
-    box-shadow: 0 4px 14px rgba(56,189,248,0.25);
-  }
-  .ut-logo-name {
-    font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800;
-    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .ut-phase-badge {
-    font-size: 11px; color: var(--accent4);
-    background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.25);
-    border-radius: 100px; padding: 4px 12px; font-weight: 600;
-  }
-
   /* ACCESSIBILITY */
   .ut-skip-link {
     position: fixed; top: -100px; left: 16px; z-index: 9999;
@@ -88,61 +62,84 @@ const styles = `
     }
   }
 
-  .ut-nav { display: flex; gap: 8px; }
-  .ut-nav-btn {
-    padding: 7px 14px; border-radius: 10px; border: 1px solid var(--border);
-    background: none; color: var(--muted); font-family: 'DM Sans', sans-serif;
-    font-size: 12px; cursor: pointer; transition: all 0.2s;
+  .ut-page-wrap {
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 18px 24px 60px;
+    position: relative;
+    z-index: 5;
   }
-  .ut-nav-btn:hover { border-color: var(--accent2); color: var(--text); }
-  .ut-nav-btn.active { border-color: var(--accent2); background: rgba(129,140,248,0.12); color: var(--accent2); }
 
   .ut-hero {
     position: relative; z-index: 5;
-    padding: 38px 32px 24px; text-align: center;
+    padding: 24px 20px 20px; text-align: center;
   }
   .ut-hero-tag {
     display: inline-flex; align-items: center; gap: 6px;
     background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.22);
     border-radius: 100px; padding: 5px 14px;
     font-size: 11px; color: var(--accent4); text-transform: uppercase;
-    letter-spacing: 1px; margin-bottom: 16px;
+    letter-spacing: 1px; margin-bottom: 14px;
   }
   .ut-hero h2 {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(24px, 4vw, 42px); font-weight: 800; line-height: 1.15; margin-bottom: 10px;
+    font-size: clamp(24px, 3.8vw, 40px); font-weight: 800; line-height: 1.18; margin-bottom: 10px;
   }
   .ut-hero h2 em {
     font-style: normal;
     background: linear-gradient(90deg, var(--accent4), var(--accent));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
-  .ut-hero p { font-size: 14px; color: var(--muted); max-width: 460px; margin: 0 auto; line-height: 1.7; }
+  .ut-hero p { font-size: 14px; color: var(--muted); max-width: 520px; margin: 0 auto 18px; line-height: 1.6; }
+
+  .ut-tab-pills {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--surface2); border: 1px solid var(--border);
+    padding: 4px; border-radius: 100px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+  .ut-tab-pill {
+    padding: 8px 20px; border-radius: 100px; border: 1px solid transparent;
+    background: transparent; color: var(--muted); font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s ease;
+  }
+  .ut-tab-pill:hover { color: var(--text); }
+  .ut-tab-pill.active {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff; box-shadow: 0 4px 14px rgba(56,189,248,0.3);
+  }
 
   .ut-stats {
     position: relative; z-index: 5;
-    max-width: 1100px; margin: 0 auto 20px; padding: 0 24px;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    width: 100%; margin: 10px auto 28px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
   }
-  @media (max-width: 600px) { .ut-stats { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) { .ut-stats { grid-template-columns: repeat(2, 1fr); } }
   .ut-stat {
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 14px; text-align: center; transition: all 0.3s;
+    border-radius: 16px; padding: 18px 16px; text-align: center;
+    transition: all 0.25s ease;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
   }
-  .ut-stat:hover { border-color: var(--accent4); transform: translateY(-2px); }
+  .ut-stat:hover { border-color: var(--accent4); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(52,211,153,0.15); }
   .ut-stat-n {
-    font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800;
+    font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; line-height: 1;
     background: linear-gradient(90deg, var(--accent4), var(--accent));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
-  .ut-stat-l { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .ut-stat-l { font-size: 11.5px; color: var(--muted); margin-top: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
 
-  .ut-layout {
+  .ut-layout-grid {
     position: relative; z-index: 5;
-    display: grid; grid-template-columns: 1fr 320px; gap: 18px;
-    max-width: 1100px; margin: 0 auto; padding: 0 24px 40px;
+    display: grid; grid-template-columns: 1fr 340px; gap: 20px;
+    width: 100%;
   }
-  @media (max-width: 800px) { .ut-layout { grid-template-columns: 1fr; } .ut-sidebar { order: -1; } }
+  @media (max-width: 860px) {
+    .ut-layout-grid { grid-template-columns: 1fr; }
+    .ut-sidebar { order: -1; }
+  }
 
   .ut-board-panel {
     background: var(--surface); border: 1px solid var(--border);
@@ -694,26 +691,32 @@ export default function UnifyTalkPhase2() {
           Alt + V: Toggle Eye Gaze control.
         </div>
 
-        <header className="ut-header">
-          <div className="ut-logo">
-            <div className="ut-logo-icon" aria-hidden="true">🤝</div>
-            <div className="ut-logo-name">UnifyTalk</div>
-          </div>
-          <nav className="ut-nav" aria-label="Board tabs">
-            <button className={"ut-nav-btn " + (tab==="board"?"active":"")} onClick={()=>handleTabChange("board")} aria-pressed={tab==="board"}>🔲 Picture Board</button>
-            <button className={"ut-nav-btn " + (tab==="emotion"?"active":"")} onClick={()=>handleTabChange("emotion")} aria-pressed={tab==="emotion"}>💭 Emotions</button>
-          </nav>
-          <div className="ut-phase-badge">✨ Phase 2 · Pictograms</div>
-        </header>
-
-        <main className="ut-layout" id="main-board">
-          {/* HERO (accessible description) */}
+        <main className="ut-page-wrap" id="main-board">
+          {/* HERO */}
           <section className="ut-hero" aria-labelledby="hero-title">
-            <div className="ut-hero-tag" aria-hidden="true">✨ New in Phase 2</div>
+            <div className="ut-hero-tag" aria-hidden="true">✨ Phase 2 · AAC Pictograms</div>
             <h2 id="hero-title">Build Sentences <em>Without Speaking</em></h2>
             <p>Tap pictures to build your thought. Add an emotion. Hit Speak — UnifyTalk voices it for you instantly.</p>
+            
+            <div className="ut-tab-pills" role="tablist" aria-label="Board views">
+              <button 
+                className={"ut-tab-pill " + (tab==="board"?"active":"")} 
+                onClick={()=>handleTabChange("board")} 
+                role="tab"
+                aria-selected={tab==="board"}>
+                🔲 Picture Board
+              </button>
+              <button 
+                className={"ut-tab-pill " + (tab==="emotion"?"active":"")} 
+                onClick={()=>handleTabChange("emotion")} 
+                role="tab"
+                aria-selected={tab==="emotion"}>
+                💭 Emotions
+              </button>
+            </div>
           </section>
 
+          {/* STATS BAR */}
           <section className="ut-stats" aria-label="Platform stats">
             {[
               { n: PICTOGRAMS.length, l: "Pictograms" },
@@ -728,7 +731,7 @@ export default function UnifyTalkPhase2() {
             ))}
           </section>
 
-          <div className="ut-layout-grid" style={{display:'grid', gridTemplateColumns:'1fr 320px', gap:'18px', width:'100%'}}>
+          <div className="ut-layout-grid">
             {/* BOARD PANEL */}
             <section className="ut-board-panel" aria-labelledby="panel-title">
               <div className="ut-panel-header">
