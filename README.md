@@ -145,14 +145,6 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 
 ---
 
-## 🔗 Links
-| | Link |
-|-|------|
-| 🌐 Live Demo | https://unify-talk.vercel.app |
-| 💻 Frontend Repo | https://github.com/bishnu24ise-prog/UnifyTalk |
-| ⚙️ Backend Repo | https://github.com/bishnu24ise-prog/unifytalk-backend |
-| 🚀 Backend API | https://unifytalk-backend.onrender.com |
-
 ---
 
 ## 👤 Author
