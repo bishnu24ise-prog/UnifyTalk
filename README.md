@@ -7,7 +7,7 @@
 ---
 
 ## 🔗 Live Demo
-**👉 https://unify-talk.vercel.app**
+https://unifytalk.vercel.app/
 
 ---
 
